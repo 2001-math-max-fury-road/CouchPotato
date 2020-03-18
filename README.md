@@ -1,1 +1,1 @@
-# CardGameGen
+# Couch Potato -- Chrome Extension
