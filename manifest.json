@@ -4,7 +4,6 @@
   "name": "Couch Potato",
   "description": "tbd",
   "version": "1.0.0",
-  "default_locale": "en",
   "permissions": [
     "activeTab",
     "declarativeContent"
@@ -14,8 +13,7 @@
       "19": "popcorn-icon.png",
       "38": "popcorn-icon.png"
     },
-    "default_title": "Couch Potato",
-    "default_popup": "popup.html"
+    "default_title": "Couch Potato"
   },
   "background": {
     "scripts": ["background.js"],
