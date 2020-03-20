@@ -1,0 +1,27 @@
+{
+  "manifest_version": 2,
+
+  "name": "Couch Potato",
+  "description": "tbd",
+  "version": "1.0.0",
+  "permissions": [
+    "activeTab",
+    "declarativeContent"
+  ],
+  "page_action": {
+    "default_icon": {
+      "19": "popcorn-icon.png",
+      "38": "popcorn-icon.png"
+    },
+    "default_title": "Couch Potato"
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "icons": {
+    "16": "popcorn-icon.png",
+    "48": "popcorn-icon.png",
+    "128": "popcorn-icon.png"
+  }
+}
