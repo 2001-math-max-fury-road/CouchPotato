@@ -35,5 +35,12 @@
 
 - users have access to crowd data if there are any noteworthy trends (for example, if many users have reacted with a laughing emoji for a specific scene, users can toggle an option to see that data visualized during that scene)
 
-- users can make "public" rooms for others to join
-  - if a user begins watching the same movie/show as someone in a public room, they will be given the option to join after clicking on the extension
+- users can have friends, and when they activate the extension, they can see if any of their friends are currently watching anything
+
+
+# Resources Used:
+- We drew inspiration from the Netflix Party Chrome extension (https://chrome.google.com/webstore/detail/netflix-party/oocalimimngaihdkbihfgmpkcpnmlaoa?hl=en) and looked at the source code (https://github.com/netflixparty1/netflixparty-chrome) to help us get started.
+
+- We watched this tutorial on integrating socket.io into a Chrome extension (https://www.youtube.com/watch?v=1zVoGTQUXvs) and referenced the corresponding repo (https://github.com/matthewlawson/lnm-socket.io)
+
+- Socket.io documentation: https://socket.io/get-started/chat
