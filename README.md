@@ -37,3 +37,9 @@
 
 - users can make "public" rooms for others to join
   - if a user begins watching the same movie/show as someone in a public room, they will be given the option to join after clicking on the extension
+
+
+# Resources Used:
+- We drew inspiration from the Netflix Party Chrome extension (https://chrome.google.com/webstore/detail/netflix-party/oocalimimngaihdkbihfgmpkcpnmlaoa?hl=en) and looked at the source code (https://github.com/netflixparty1/netflixparty-chrome) to help us get started.
+
+- We watched this tutorial on integrating socket.io into a Chrome extension (https://www.youtube.com/watch?v=1zVoGTQUXvs) and referenced the corresponding repo (https://github.com/matthewlawson/lnm-socket.io)
