@@ -1,5 +1,5 @@
 const app = require("express")();
-const server = require("http").createServer(app);
+const server = require("http").Server(app);
 const path = require("path");
 const io = require("socket.io")(server);
 
@@ -11,7 +11,7 @@ app.get("/", function(req, res) {
 io.on("connection", function(socket) {
   console.log("a user connected");
   socket.on("chat message", function(msg) {
-    io.emit("chat message: ", msg);
+    io.emit("chat message", msg);
   });
 });
 
