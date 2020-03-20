@@ -16,6 +16,8 @@
 
 
 ## Tier 2: Enhanced Chat Experience
+- chat is integrated into the user's browser window as an overlay
+
 - users have access to various emoji notifications and can activate notifications to other users in the room
   - drinking game
   - throw popcorn at screen
