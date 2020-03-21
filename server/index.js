@@ -5,7 +5,7 @@ const io = require("socket.io")(server);
 const port = process.env.PORT || 3000
 
 app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "/../extension/popup.html"));
+  res.sendFile(path.join(__dirname, "/../extension/socket.html"));
   //res.sendFile(path.join(__dirname, "/popup.html"));
 });
 
