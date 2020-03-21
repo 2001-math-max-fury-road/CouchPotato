@@ -13,8 +13,8 @@
       "19": "popcorn-icon.png",
       "38": "popcorn-icon.png"
     },
-    "default_title": "Couch Potato", 
-    "default_popup": "index.html"
+    "default_title": "Couch Potato",
+    "default_popup": "popup.html"
   },
   "background": {
     "scripts": ["background.js"],
