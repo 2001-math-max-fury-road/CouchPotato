@@ -46,3 +46,5 @@
 - We watched this tutorial on integrating socket.io into a Chrome extension (https://www.youtube.com/watch?v=1zVoGTQUXvs) and referenced the corresponding repo (https://github.com/matthewlawson/lnm-socket.io)
 
 - Socket.io documentation: https://socket.io/get-started/chat
+
+- Build and deploy the chat application with Node, Express,Socket.io, React  https://www.youtube.com/watch?v=ZwFA3YMfkoc
