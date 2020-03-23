@@ -48,3 +48,5 @@
 - Socket.io documentation: https://socket.io/get-started/chat
 
 - Build and deploy the chat application with Node, Express,Socket.io, React  https://www.youtube.com/watch?v=ZwFA3YMfkoc
+
+- Creating a Chrome Extension https://developer.chrome.com/extensions/getstarted
