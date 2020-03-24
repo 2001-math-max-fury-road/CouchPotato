@@ -4,9 +4,10 @@
     "description": "chat feature for Couch Potato",
     "dependencies": {
         "express": "^4.17.1",
+        "nodemon": "^2.0.2",
         "socket.io": "^2.3.0"
     },
     "scripts": {
-        "start": "node server/index.js"
+        "start": "nodemon server/index.js"
     }
 }
