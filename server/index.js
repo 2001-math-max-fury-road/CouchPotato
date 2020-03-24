@@ -5,12 +5,22 @@ const path = require('path');
 const io = require('socket.io')(server);
 const port = process.env.PORT || 3000;
 
+// app.set('views', '../views');
+// app.set('view engine', 'ejs');
+
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname, '/../public/socket.html'));
-  //res.sendFile(path.join(__dirname, "/popup.html"));
+const rooms = {};
+
+app.get('/', (req, res) => {
+  // res.render('index', { rooms: rooms });
+  res.sendFile(path.join(__dirname, '/../public/index.html'));
+  // res.sendFile(path.join(__dirname, "/popup.html"));
+});
+
+app.get('/:room', (req, res) => {
+  res.render('room', { roomName: req.params.room });
 });
 
 io.on('connection', function(socket) {
