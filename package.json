@@ -9,7 +9,8 @@
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
         "react-router-dom": "^5.1.2",
-        "socket.io": "^2.3.0"
+        "socket.io": "^2.3.0",
+        "volleyball": "^1.5.1"
     },
     "scripts": {
         "start": "node server",

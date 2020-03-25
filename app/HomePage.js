@@ -17,14 +17,10 @@ export default class HomePage extends Component {
     }
 
     toggleStartPopup() { 
-        console.log('before-start', this.state)
         this.setState({ showJoin: false, showStart: !this.state.showStart })
-        console.log('after-start', this.state)
-
     }
 
     render() { 
-        console.log('inside render', this.state)
 
         return ( 
 
