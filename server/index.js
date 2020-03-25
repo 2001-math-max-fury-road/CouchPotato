@@ -1,32 +1,31 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const server = require('http').Server(app);
-const path = require('path');
-const io = require('socket.io')(server);
+const server = require("http").Server(app);
+const path = require("path");
+const io = require("socket.io")(server);
 const port = process.env.PORT || 3000;
 
-// app.set('views', '../views');
-// app.set('view engine', 'ejs');
+app.set("view engine", "html");
 
-app.use(express.static('public'));
+app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
 const rooms = {};
 
-app.get('/', (req, res) => {
-  // res.render('index', { rooms: rooms });
-  res.sendFile(path.join(__dirname, '/../public/index.html'));
-  // res.sendFile(path.join(__dirname, "/popup.html"));
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "/../public/index.html"));
 });
 
-app.get('/:room', (req, res) => {
-  res.render('room', { roomName: req.params.room });
+// route for joining an existing room 
+app.get("/:room", (req, res) => {
+  res.render('room', { roomId: req.params.room });
 });
 
-io.on('connection', function(socket) {
-  console.log('a user connected');
-  socket.on('chat message', function(msg) {
-    io.emit('chat message', msg);
+
+io.on("connection", function(socket) {
+  console.log("a user connected");
+  socket.on("chat message", function(msg) {
+    io.emit("receive message", msg);
   });
 });
 
