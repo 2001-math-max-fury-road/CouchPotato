@@ -13,17 +13,21 @@ export default class HomePage extends Component {
     }
 
     toggleJoinPopup() { 
-        console.log('before', this.state)
-        this.setState({ showJoin: !this.state.showJoin })
-        console.log('after', this.state)
+        this.setState({ showStart: false, showJoin: !this.state.showJoin })
     }
 
     toggleStartPopup() { 
-        this.setState({ showStart: !this.state.showStart })
+        console.log('before-start', this.state)
+        this.setState({ showJoin: false, showStart: !this.state.showStart })
+        console.log('after-start', this.state)
+
     }
 
     render() { 
+        console.log('inside render', this.state)
+
         return ( 
+
             <div id='homepage'>
                 <h1>Welcome to Couch Potato!</h1>
                 <button onClick={this.toggleJoinPopup}>Join a Couch</button>
