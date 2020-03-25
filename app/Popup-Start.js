@@ -1,19 +1,23 @@
 import React from 'react'
+import axios from 'axios'
+import randomizeRoomId from '../server/utils'
 
-export default class StartPopup extends React.Component { 
-    constructor() { 
-        super() 
-
+export default class StartPopup extends React.Component {
+    constructor() {
+        super()
+        this.state = {username: ''}
         this.startCouch = this.startCouch.bind(this)
     }
 
-    startCouch(event) { 
-        event.preventDefault()
-        console.log(event.target.value)
+    startCouch(event) {
+        this.setState({username: event.target.value})
+        const roomId = randomizeRoomId()
+        const {data} = axios.post('/api/', roomId)
+
     }
 
-    render() { 
-        return ( 
+    render() {
+        return (
             <div className='popup'>
                 <div className='popup\_inner'>
                     <form id='popup-form'>
