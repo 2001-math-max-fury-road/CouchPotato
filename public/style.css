@@ -6,14 +6,14 @@
 body {
   font: 13px Helvetica, Arial;
 }
-form {
+#chat-form {
   background: #000;
   padding: 3px;
   position: fixed;
   bottom: 0;
   width: 100%;
 }
-form input {
+#chat-form input {
   border: 0;
   padding: 10px;
   width: 90%;
@@ -23,6 +23,14 @@ form button {
   width: 9%;
   background: rgb(130, 224, 255);
   border: none;
+  padding: 10px;
+}
+button { 
+  width: 20%;
+  height: 15%;
+  background: rgb(130, 224, 255);
+  border: black; 
+  margin: 2em;
   padding: 10px;
 }
 #messages {
@@ -35,4 +43,32 @@ form button {
 }
 #messages li:nth-child(odd) {
   background: #eee;
+}
+.popup {  
+  width: 100%;   
+  height: 50%;
+  top: 0;  
+  left: 0;  
+  right: 0;  
+  bottom: 0;  
+  margin: auto;  
+  background-color: rgba(0,0,0, 0.5);  
+}
+#popup-form label { 
+  color: white; 
+  padding: 10px;
+}
+#popup-form input { 
+  border: 0;
+  padding: 10px;
+  width: 100%;
+  margin-right: 1%;
+}
+#popup-form button { 
+  width: 30%;
+  height: 25%;
+  background: rgb(130, 224, 255);
+  border: black; 
+  margin: 2em;
+  padding: 10px;
 }

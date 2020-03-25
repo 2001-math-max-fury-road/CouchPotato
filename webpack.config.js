@@ -4,7 +4,7 @@ module.exports = {
   mode: isDev ? 'development' : 'production',
   entry: [
     // 'babel/polyfill', // enables async-await
-    './app/main'
+    './app/Main'
   ],
   output: {
     path: __dirname,
