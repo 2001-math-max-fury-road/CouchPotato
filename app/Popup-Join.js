@@ -1,30 +1,46 @@
-import React from 'react'
+import React from 'react';
 
-export default class JoinPopup extends React.Component { 
-    constructor() { 
-        super() 
+export default class JoinPopup extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      couchId: '',
+      username: '',
+    };
+    this.joinCouch = this.joinCouch.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
 
-        this.joinCouch = this.joinCouch.bind(this)
-    }
+  joinCouch(event) {
+    event.preventDefault();
+    location.replace(`http://localhost:3000/${this.state.couchId}`)
+  }
 
-    joinCouch(event) { 
-        event.preventDefault()
-        console.log(event.target.value)
-    }
+  handleChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
+  }
 
-    render() { 
-        return ( 
-            <div className='popup'>
-                <div className='popup\_inner'>
-                    <form id='popup-form'>
-                    <label htmlFor="couchId" >Couch Id: </label>
-                    <input name='couchId'></input>
-                    <label htmlFor="username">Your Name: </label>
-                    <input name='username'></input>
-                    <button onClick={this.joinCouch}>Join Couch</button>
-                    </form>
-                </div>
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div className="popup">
+        <div className="popup\_inner">
+          <form id="popup-form">
+            <label htmlFor="couchId">Couch ID: </label>
+            <input
+              name="couchId"
+              value={this.state.couchId}
+              onChange={this.handleChange}
+            ></input>
+            <label htmlFor="username">Your Name: </label>
+            <input
+              name="username"
+              value={this.state.username}
+              onChange={this.handleChange}
+            ></input>
+            <button onClick={this.joinCouch}>Join Couch</button>
+          </form>
+        </div>
+      </div>
+    );
+  }
 }
