@@ -6,7 +6,7 @@ const port = process.env.PORT || 3000;
 const volleyball = require('volleyball');
 const io = require('socket.io')(server);
 const router = require('express').Router();
-const { randomizeCouchId, getUserCouches } = require('./utils');
+const randomizeCouchId = require('./utils');
 
 app.set('view engine', 'html');
 
@@ -32,9 +32,8 @@ app.post('/api/', (req, res) => {
     couch = randomizeCouchId();
     couches[couch] = { users: {} };
   }
+  console.log('couches', couches, 'users', couches[couch].users, 'couchId', couch)
   res.redirect(couch);
-  console.log('couches', couches, 'users', users, 'couchId', couch)
-  io.emit('couch-created', couch)
   // console.log('success!')
   // res.sendStatus(204).json()
 });
@@ -54,25 +53,27 @@ server.listen(port, function() {
 
 io.on('connection', socket => {
   console.log('a user connected');
-  console.log(couches)
+  console.log('couches', couches)
   socket.on('new-user', (couch, name) => {
-    console.log('new-user-socket', couch, name)
+    console.log('new-user-socket: couch, name', couch, name)
     socket.join(couch);
     couches[couch].users[socket.id] = name;
-    socket.to(couch).broadcast.emit('user-connected', name);
+    console.log('________new-user socket.id', socket.id)
+    socket.to(couch).emit('user-connected', name);
   });
   socket.on('send-chat-message', (couch, message) => {
-    socket.to(couch).broadcast.emit('chat-message', {
-      message: message,
-      name: couches[couch].users[socket.id],
-    });
-    socket.on('disconnect', () => {
-      getUserCouches(socket).forEach(couch => {
-        socket
-          .to(couch)
-          .broadcast.emit('user-disconnected', couches[couch].users[socket.id]);
-        delete couches[couch].users[socket.id];
-      });
+    console.log('send-chat-message couch', couch)
+    console.log('send-chat-message, socket.id', socket.id)
+    console.log(message)
+    socket.to(couch).emit('chat-message', message
+    // {
+    //   message: message,
+    //   // name: couches[couch].users[socket.id],
+    // }
+    );
+    socket.on('disconnect', (couch, name) => {
+      socket.to(couch).emit('user-disconnected', name)
+      // delete couches[couch].users[socket.id];
     });
   });
 });

@@ -11,25 +11,23 @@ export default class Chat extends React.Component {
       messages: [],
     };
     this.socket = socketIOClient('http://localhost:3000');
-    this.socket.on('couch-created', () => {
-     const msg = `${this.state.username} started the couch!`
-     this.setState({ messages: [...this.state.messages, msg] })
+    this.socket.on('chat-message', message => {
+      // addMessage(msg);
+      console.log('receiving message', message)
+      this.setState({ messages: [...this.state.messages, message] });
     });
-    this.socket.on('receive message', msg => {
-      addMessage(msg);
-    });
-    this.socket.on('user-connected', username => {
+    this.socket.on('new-user', username => {
       const msg = `${username} connected`;
       this.setState({ messages: [...this.state.messages, msg] });
     });
-    this.socket.on('user-disconnected', username => {
+    this.socket.on('disconnect', username => {
       const msg = `${username} disconnected`;
       this.setState({ messages: [...this.state.messages, msg] });
     });
 
-    const addMessage = msg => {
-      this.setState({ messages: [...this.state.messages, msg] });
-    };
+    // const addMessage = msg => {
+    //   this.setState({ messages: [...this.state.messages, msg] });
+    // };
 
     this.sendMessage = event => {
       event.preventDefault();
