@@ -7,19 +7,17 @@ export default class StartPopup extends React.Component {
   constructor() {
     super();
     this.state = { couchId: '', username: '' };
-    this.socket = socketIOClient('http://localhost:3000');
     this.startCouch = this.startCouch.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.socket = socketIOClient('http://localhost:3000')
   }
 
   async startCouch(event) {
     event.preventDefault();
-    console.log(event.target)
     const { data } = await axios.post('/api/');
-    this.setState({ couchId: data.roomId });
-    this.socket.on('room-created', room => {});
-    console.log('data_______', data.roomId);
-    location.replace(`http://localhost:3000/${data.roomId}`);
+    this.setState({ couchId: data.couchId });
+    this.socket.emit('new-user', this.state.couchId, this.state.username)
+    location.replace(`http://localhost:3000/${data.couchId}`);
   }
 
   handleChange(event) {
@@ -27,24 +25,18 @@ export default class StartPopup extends React.Component {
   }
 
   render() {
+    const state = this.state
     return (
       <div className="popup">
         <div className="popup\_inner">
-          <form id="popup-form">
+          <form id="popup-form" onChange={this.handleChange}>
             <label htmlFor="username">Your Name: </label>
             <input
               name="username"
-              value={this.state.username}
-              onChange={this.handleChange}
+              // value={this.state.username}
+              // onChange={this.handleChange}
             ></input>
-            <Link
-              to={{
-                pathname: `${this.state.couchId}`,
-                state: { ...this.state },
-              }}
-            >
-              <button onClick={this.startCouch}>Start New Couch</button>
-            </Link>
+            <button onClick={this.startCouch}>Start New Couch</button>
           </form>
         </div>
       </div>

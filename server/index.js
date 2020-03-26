@@ -6,7 +6,7 @@ const port = process.env.PORT || 3000;
 const volleyball = require('volleyball');
 const io = require('socket.io')(server);
 const router = require('express').Router();
-const { randomizeRoomId, getUserRooms } = require('./utils');
+const { randomizeCouchId, getUserCouches } = require('./utils');
 
 app.set('view engine', 'html');
 
@@ -21,25 +21,27 @@ app.use(express.urlencoded({ extended: true }));
 
 // app.use('/', require('./server'))
 
-const rooms = {};
+const couches = {};
 
-// route for starting a new room
+// route for starting a new couch
 app.post('/api/', (req, res) => {
-  const roomId = randomizeRoomId();
-  if (!rooms[roomId]) {
-    rooms[roomId] = { users: {} };
+  const couch = randomizeCouchId();
+  if (!couches[couch]) {
+    couches[couch] = { users: {} };
   } else {
-    roomId = randomizeRoomId();
-    rooms[roomId] = { users: {} };
+    couch = randomizeCouchId();
+    couches[couch] = { users: {} };
   }
-  res.redirect(roomId);
+  res.redirect(couch);
+  console.log('couches', couches, 'users', users, 'couchId', couch)
+  io.emit('couch-created', couch)
   // console.log('success!')
   // res.sendStatus(204).json()
 });
 
-// route for joining an existing room
-app.get('/api/:room', (req, res) => {
-  res.json({ roomId: req.params.room });
+// route for joining an existing couch
+app.get('/api/:couch', (req, res) => {
+  res.json({ couchId: req.params.couch });
 });
 
 app.get('*', (req, res) => {
@@ -52,22 +54,24 @@ server.listen(port, function() {
 
 io.on('connection', socket => {
   console.log('a user connected');
-  socket.on('new-user', (room, name) => {
-    socket.join(room);
-    rooms[room].users[socket.id] = name;
-    socket.to(room).broadcast.emit('user-connected', name);
+  console.log(couches)
+  socket.on('new-user', (couch, name) => {
+    console.log('new-user-socket', couch, name)
+    socket.join(couch);
+    couches[couch].users[socket.id] = name;
+    socket.to(couch).broadcast.emit('user-connected', name);
   });
-  socket.on('send-chat-message', (room, message) => {
-    socket.to(room).broadcast.emit('chat-message', {
+  socket.on('send-chat-message', (couch, message) => {
+    socket.to(couch).broadcast.emit('chat-message', {
       message: message,
-      name: rooms[room].users[socket.id],
+      name: couches[couch].users[socket.id],
     });
     socket.on('disconnect', () => {
-      getUserRooms(socket).forEach(room => {
+      getUserCouches(socket).forEach(couch => {
         socket
-          .to(room)
-          .broadcast.emit('user-disconnected', rooms[room].users[socket.id]);
-        delete rooms[room].users[socket.id];
+          .to(couch)
+          .broadcast.emit('user-disconnected', couches[couch].users[socket.id]);
+        delete couches[couch].users[socket.id];
       });
     });
   });
