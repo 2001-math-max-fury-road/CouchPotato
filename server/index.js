@@ -19,17 +19,16 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// app.use('/', require('./server'))
 const couches = {};
 
 // route for starting a new couch
 app.post("/api/", (req, res) => {
   const couch = randomizeCouchId();
   if (!couches[couch]) {
-    couches[couch] = { users: {} };
+    couches[couch] = { users: {}, messages: [] };
   } else {
     couch = randomizeCouchId();
-    couches[couch] = { users: {} };
+    couches[couch] = { users: {}, messages: [] };
   }
   console.log(
     "1. couches",
@@ -40,8 +39,6 @@ app.post("/api/", (req, res) => {
     couch
   );
   res.redirect(couch);
-  // console.log('success!')
-  // res.sendStatus(204).json()
 });
 
 // route for joining an existing couch
@@ -58,21 +55,13 @@ server.listen(port, function() {
 });
 
 io.on("connection", socket => {
-  console.log("2.a user connected");
-  console.log("3.couches", couches);
   socket.on("new-user", (couch, name) => {
-    console.log("4. new-user-socket: couch, name", couch, name);
     socket.join(couch);
     couches[couch].users[socket.id] = name;
-    console.log("5. new-user socket.id", socket.id, name);
-    socket.to(couch).emit("user-connected", name);
+    socket.emit("user-connected", name);
   });
-  socket.on("send-chat-message", (couch, name, message) => {
-    console.log("6. send-chat-message couch", couch);
-    console.log("7. send-chat-message name", name);
-    console.log("8. send-chat-message, socket.id", socket.id);
-    console.log(message);
-    socket.to(couch).emit(
+  socket.on("send-chat-message", (message) => {
+    socket.emit(
       "receive-message",
       message
       // {
@@ -80,8 +69,8 @@ io.on("connection", socket => {
       //   // name: couches[couch].users[socket.id],
       // }
     );
-    socket.on("disconnect", (couch, name) => {
-      socket.to(couch).emit("user-disconnected", name);
+    socket.on("disconnect", (name) => {
+      socket.emit("user-disconnected", name);
       // delete couches[couch].users[socket.id];
     });
   });

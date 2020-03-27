@@ -14,6 +14,7 @@ export default class StartPopup extends React.Component {
   async startCouch(event) {
     event.preventDefault();
     const { data } = await axios.post('/api/');
+    //console.log('data_____', data)
     this.setState({ couchId: data.couchId });
     Socket.emit('new-user', this.state.couchId, this.state.username)
     // location.replace(`http://localhost:3000/${data.couchId}`);
@@ -24,7 +25,7 @@ export default class StartPopup extends React.Component {
   }
 
   render() {
-    const state = this.state
+    //console.log('state____', this.state)
     return (
       <div className="popup">
         <div className="popup\_inner">
