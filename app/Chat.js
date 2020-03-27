@@ -1,29 +1,28 @@
 import React from 'react';
-import socketIOClient from 'socket.io-client';
+import Socket from './Socket'
 
 export default class Chat extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      couchId: '',
-      username: '',
+      couchId: this.props.couchId, 
+      username: this.props.username,
       message: '',
       messages: [],
     };
-    this.endpoint = 'http://localhost:3000'
-    this.socket = socketIOClient(this.endpoint, { query: `couchId=${this.props.couchId}`});
-    this.socket.on('receive message', msg => {
+    
+    Socket.on('receive message', msg => {
       addMessage(msg);
     });
-    this.socket.on('user-connected', username => {
+    Socket.on('user-connected', username => {
       const msg = `${username} connected`;
       this.setState({ messages: [...this.state.messages, msg] });
     });
-    this.socket.on('couch-created', () => {
+    Socket.on('couch-created', () => {
       const msg = `${this.state.username} started the couch!`
       this.setState({ messages: [...this.state.messages, msg] })
      });
-    this.socket.on('user-disconnected', username => {
+    Socket.on('user-disconnected', username => {
       const msg = `${username} disconnected`;
       this.setState({ messages: [...this.state.messages, msg] });
     });
@@ -34,37 +33,37 @@ export default class Chat extends React.Component {
 
     this.sendMessage = event => {
       event.preventDefault();
-      this.socket.emit('send-chat-message', this.state.couchId, this.state.username, this.state.message);
+      Socket.emit('send-chat-message', this.props.couchId, this.props.username, this.state.message);
       this.setState({ message: '' });
     };
   }
 
-  componentDidMount() {
-    //axios.get
-    console.log(this.props)
-    if (this.props.location.state) {
-      console.log('hit this')
-      const joinCouch = { ...this.props.location.state };
-      this.setState({ ...joinCouch });
-    } else {
-      console.log('hit THIS', this.props.location)
-      const url = window.location.href;
-      const splitURL = url.split('/');
-      const couchId = splitURL[3];
-      this.setState({ couchId: couchId });
-    }
-  }
+  // componentDidMount() {
+  //   //axios.get
+  //   if (this.props.location.state) {
+  //     console.log('hit this')
+  //     const joinCouch = { ...this.props.location.state };
+  //     this.setState({ ...joinCouch });
+  //   } else {
+  //     console.log('hit THIS', this.props.location)
+  //     const url = window.location.href;
+  //     const splitURL = url.split('/');
+  //     const couchId = splitURL[3];
+  //     this.setState({ couchId: couchId });
+  //   }
+  // }
 
   render() {
+    console.log(Socket)
     console.log('this.state__________', this.state);
     return (
       <div>
-        <h3>Share this Couch ID: {this.state.couchId}</h3>
+        <h3>Share this Couch ID: {this.props.couchId}</h3>
         <ul id="messages">
           {this.state.messages.map(message => {
             return (
               <li>
-                {this.state.username}: {message}
+                {this.props.username}: {message}
               </li>
             );
           })}

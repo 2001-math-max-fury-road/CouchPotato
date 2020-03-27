@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import socketIOClient from 'socket.io-client';
-import { Link } from 'react-router-dom';
+import Socket from './Socket'
+import Chat from './Chat'
 
 export default class StartPopup extends React.Component {
   constructor() {
@@ -9,15 +9,14 @@ export default class StartPopup extends React.Component {
     this.state = { couchId: '', username: '' };
     this.startCouch = this.startCouch.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.socket = socketIOClient('http://localhost:3000')
   }
 
   async startCouch(event) {
     event.preventDefault();
     const { data } = await axios.post('/api/');
     this.setState({ couchId: data.couchId });
-    this.socket.emit('new-user', this.state.couchId, this.state.username)
-    location.replace(`http://localhost:3000/${data.couchId}`);
+    Socket.emit('new-user', this.state.couchId, this.state.username)
+    // location.replace(`http://localhost:3000/${data.couchId}`);
   }
 
   handleChange(event) {
@@ -37,6 +36,7 @@ export default class StartPopup extends React.Component {
               // onChange={this.handleChange}
             ></input>
             <button onClick={this.startCouch}>Start New Couch</button>
+            <Chat couchId={this.state.couchId} username={this.state.username}/> 
           </form>
         </div>
       </div>
