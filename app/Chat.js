@@ -11,17 +11,15 @@ export default class Chat extends React.Component {
       messages: [],
     };
     
-    Socket.on('receive message', msg => {
-      addMessage(msg);
-    });
+
     Socket.on('user-connected', username => {
       const msg = `${username} connected`;
       this.setState({ messages: [...this.state.messages, msg] });
     });
-    Socket.on('couch-created', () => {
-      const msg = `${this.state.username} started the couch!`
-      this.setState({ messages: [...this.state.messages, msg] })
-     });
+    // Socket.on('couch-created', () => {
+    //   const msg = `${this.state.username} started the couch!`
+    //   this.setState({ messages: [...this.state.messages, msg] })
+    //  });
     Socket.on('user-disconnected', username => {
       const msg = `${username} disconnected`;
       this.setState({ messages: [...this.state.messages, msg] });
@@ -36,6 +34,9 @@ export default class Chat extends React.Component {
       Socket.emit('send-chat-message', this.props.couchId, this.props.username, this.state.message);
       this.setState({ message: '' });
     };
+    Socket.on('receive-message', msg => {
+      addMessage(msg);
+    });
   }
 
   // componentDidMount() {

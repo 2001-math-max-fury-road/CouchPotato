@@ -36,9 +36,9 @@ export default class StartPopup extends React.Component {
               // onChange={this.handleChange}
             ></input>
             <button onClick={this.startCouch}>Start New Couch</button>
-            <Chat couchId={this.state.couchId} username={this.state.username}/> 
           </form>
         </div>
+        <Chat couchId={this.state.couchId} username={this.state.username}/>
       </div>
     );
   }

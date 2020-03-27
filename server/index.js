@@ -73,7 +73,7 @@ io.on("connection", socket => {
     console.log("8. send-chat-message, socket.id", socket.id);
     console.log(message);
     socket.to(couch).emit(
-      "chat-message",
+      "receive-message",
       message
       // {
       //   message: message,
