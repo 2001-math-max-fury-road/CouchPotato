@@ -50,17 +50,18 @@ io.on("connection", socket => {
   socket.on("new-user", (couch, name) => {
     socket.join(couch);
     couches[couch].users[socket.id] = name;
-    socket.emit("user-connected", name);
-    let socketsOfRoom1 = io.sockets.clients(couch)
-    let numberOfClientsInRoom1 = socketsOfRoom1.length
-    console.log(numberOfClientsInRoom1)
-    socketsOfRoom1.forEach((socket) => {
-      console.log(socket)
-    })
+    io.in(couch).emit("user-connected", name);
+    // console.log(socket.id)
+    // let socketsOfRoom1 = io.sockets.clients(couch)
+    // let numberOfClientsInRoom1 = socketsOfRoom1.length
+    // console.log(numberOfClientsInRoom1)
+    // socketsOfRoom1.forEach((socket) => {
+    //   console.log(socket)
+    // })
   });
 
-  socket.on("send-chat-message", (message, username) => {
-    socket.emit(
+  socket.on("send-chat-message", (message, username, couch) => {
+    io.in(couch).emit(
       "receive-message",
       {
         message: message,
@@ -68,7 +69,7 @@ io.on("connection", socket => {
       }
     );
     socket.on("disconnect", (name) => {
-      socket.emit("user-disconnected", name);
+      io.in(couch).emit("user-disconnected", name);
       // delete couches[couch].users[socket.id];
     });
   });
