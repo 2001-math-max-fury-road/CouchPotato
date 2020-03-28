@@ -1,26 +1,27 @@
-const router = require('express').Router()
-const app = require('./index')
-const server = require("http").Server(app);
-const io = require("socket.io")(server);
-const randomizeRoomId = require('./utils')
+// const router = require('express').Router()
+// const io = require('./index')
+// const server = require("http").Server(router);
+// const randomizeRoomId = require('./utils')
 
-const rooms = {};
+// const rooms = {};
 
-// route for joining an existing room 
-router.get("/:room", (req, res) => {
-    res.json({ roomId: req.params.room });
-  });
+// // route for starting a new room
+// router.post('/', (req, res) => {
+//     const roomId = randomizeRoomId()
+//     if(!rooms[roomId]) {
+//         rooms[roomId] = { users: {} }
+//     } else {
+//         roomId = randomizeRoomId()
+//         rooms[roomId] = { users: {} }
+//     }
+//     res.redirect(`/${roomId}`)
+// })
 
- router.post('/', (req, res) => { 
-    const roomId = randomizeRoomId()
-    if(!rooms[roomId]) { 
-        rooms[roomId] = { users: {} }
-    } else { 
-        roomId = randomizeRoomId()
-        rooms[roomId] = { users: {} }
-    }
-    res.redirect(`/${roomId}`)
- }) 
+// // route for joining an existing room
+// router.get("/:room", (req, res) => {
+//     res.json({ roomId: req.params.room });
+
+//   });
 
 // io.on("connection", function(socket) {
 //     console.log("a user connected");
@@ -29,4 +30,4 @@ router.get("/:room", (req, res) => {
 //     });
 //   });
 
-module.exports = router; 
+// module.exports = io;

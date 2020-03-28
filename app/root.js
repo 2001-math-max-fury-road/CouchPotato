@@ -1,17 +1,17 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import HomePage from './HomePage'
 import Chat from './Chat'
 
-const Root = () => { 
-    return ( 
+const Root = () => {
+    return (
         <Router>
             <div>
             <Route exact path="/" component={HomePage} />
-            <Route path="/:room" component={Chat} />
+            <Route path="/:couch" component={Chat} />
             </div>
-        </Router> 
+        </Router>
     )
 }
 
-export default Root; 
+export default Root;

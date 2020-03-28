@@ -1,43 +1,51 @@
-import React from "react";
-import socketIOClient from "socket.io-client";
+import React from 'react';
+import Socket from './Socket';
 
-export default class Root extends React.Component {
-  constructor() {
-    super();
+export default class Chat extends React.Component {
+  constructor(props) {
+    super(props);
     this.state = {
-      username: "",
-      message: "",
-      messages: []
+      message: '',
+      messages: [],
     };
-    this.socket = socketIOClient("http://localhost:3000");
-    this.socket.on("receive message", function(msg) {
-      addMessage(msg);
+
+    Socket.on('user-connected', username => {
+      const message = `${username} connected`;
+      const msgObj = { message, username };
+      this.setState({ messages: [...this.state.messages, msgObj] });
     });
 
-    const addMessage = msg => {
-      console.log("data_________", msg);
-      this.setState({ messages: [...this.state.messages, msg] });
-      console.log("state_________", this.state);
-    };
+    Socket.on('user-disconnected', username => {
+      const message = `${username} disconnected`;
+      const msgObj = { message, username };
+      this.setState({ messages: [...this.state.messages, msgObj] });
+    });
+
+    Socket.on('receive-message', msgObj => {
+      this.setState({ messages: [...this.state.messages, msgObj] });
+    });
 
     this.sendMessage = event => {
       event.preventDefault();
-      this.socket.emit("chat message", {
-        author: this.state.username,
-        message: this.state.message
-      });
-      this.setState({ message: "" });
+      Socket.emit(
+        'send-chat-message',
+        this.state.message,
+        this.props.username,
+        this.props.couchId
+      );
+      this.setState({ message: '' });
     };
   }
 
   render() {
     return (
       <div>
+        <h3>Share this Couch ID: {this.props.couchId}</h3>
         <ul id="messages">
           {this.state.messages.map(message => {
             return (
               <li>
-                {message.author}: {message.message}
+                {message.username}: {message.message}
               </li>
             );
           })}
