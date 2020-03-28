@@ -1,0 +1,41 @@
+import React from 'react';
+import axios from 'axios';
+import Socket from './Socket'
+import Chat from './Chat'
+
+export default class StartPopup extends React.Component {
+  constructor() {
+    super();
+    this.state = { couchId: '', username: '' };
+    this.startCouch = this.startCouch.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  async startCouch(event) {
+    event.preventDefault();
+    const { data } = await axios.post('/api/');
+    this.setState({ couchId: data.couchId });
+    Socket.emit('new-user', this.state.couchId, this.state.username)
+  }
+
+  handleChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
+  }
+
+  render() {
+    return (
+      <div className="popup">
+        <div className="popup\_inner">
+          <form id="popup-form" onChange={this.handleChange}>
+            <label htmlFor="username">Your Name: </label>
+            <input
+              name="username"
+            ></input>
+            <button onClick={this.startCouch}>Start New Couch</button>
+          </form>
+        </div>
+        <Chat couchId={this.state.couchId} username={this.state.username}/>
+      </div>
+    );
+  }
+}
