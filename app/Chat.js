@@ -5,8 +5,6 @@ export default class Chat extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // couchId: props.couchId,
-      // username: props.username,
       message: '',
       messages: [],
     };
@@ -39,28 +37,7 @@ export default class Chat extends React.Component {
     };
   }
 
-  // componentDidMount() {
-  //   //axios.get
-  //   if (this.props.location.state) {
-  //     console.log('hit this')
-  //     const joinCouch = { ...this.props.location.state };
-  //     this.setState({ ...joinCouch });
-  //   } else {
-  //     console.log('hit THIS', this.props.location)
-  //     const url = window.location.href;
-  //     const splitURL = url.split('/');
-  //     const couchId = splitURL[3];
-  //     this.setState({ couchId: couchId });
-  //   }
-  // }
-
-  // componentDidMount(){
-  //   this.setState({couchId: this.props.couchId,
-  //     username: this.props.username})
-  // }
-
   render() {
-    console.log('props in chat render', this.props.couchId);
     return (
       <div>
         <h3>Share this Couch ID: {this.props.couchId}</h3>

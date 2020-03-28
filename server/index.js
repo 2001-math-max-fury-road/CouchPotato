@@ -60,7 +60,6 @@ io.on("connection", socket => {
       }
     );
     socket.on("disconnect", (name, couch) => {
-      // if/else statement to test for users in room??
       io.in(couch).emit("user-disconnected", name);
     });
   });

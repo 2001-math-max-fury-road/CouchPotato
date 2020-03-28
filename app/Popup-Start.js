@@ -30,8 +30,6 @@ export default class StartPopup extends React.Component {
             <label htmlFor="username">Your Name: </label>
             <input
               name="username"
-              // value={this.state.username}
-              // onChange={this.handleChange}
             ></input>
             <button onClick={this.startCouch}>Start New Couch</button>
           </form>
