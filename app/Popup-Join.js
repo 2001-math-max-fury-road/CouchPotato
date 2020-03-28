@@ -16,7 +16,6 @@ export default class JoinPopup extends React.Component {
 
   joinCouch(event) {
     event.preventDefault();
-    // await axios.get(`/api/${this.state.couchId}`)
     Socket.emit('new-user', this.state.couchId, this.state.username)
     // location.replace(`http://localhost:3000/${this.state.couchId}`)
   }

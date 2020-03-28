@@ -25,10 +25,10 @@ const couches = {};
 app.post("/api/", (req, res) => {
   const couch = randomizeCouchId();
   if (!couches[couch]) {
-    couches[couch] = { users: {}, messages: [] };
+    couches[couch] = true;
   } else {
     couch = randomizeCouchId();
-    couches[couch] = { users: {}, messages: [] };
+    couches[couch] = true;
   }
   res.redirect(couch);
 });
@@ -49,17 +49,8 @@ server.listen(port, function() {
 io.on("connection", socket => {
   socket.on("new-user", (couch, name) => {
     socket.join(couch);
-    couches[couch].users[socket.id] = name;
     io.in(couch).emit("user-connected", name);
-    // console.log(socket.id)
-    // let socketsOfRoom1 = io.sockets.clients(couch)
-    // let numberOfClientsInRoom1 = socketsOfRoom1.length
-    // console.log(numberOfClientsInRoom1)
-    // socketsOfRoom1.forEach((socket) => {
-    //   console.log(socket)
-    // })
   });
-
   socket.on("send-chat-message", (message, username, couch) => {
     io.in(couch).emit(
       "receive-message",
@@ -68,9 +59,9 @@ io.on("connection", socket => {
         username: username,
       }
     );
-    socket.on("disconnect", (name) => {
+    socket.on("disconnect", (name, couch) => {
+      // if/else statement to test for users in room??
       io.in(couch).emit("user-disconnected", name);
-      // delete couches[couch].users[socket.id];
     });
   });
 });
