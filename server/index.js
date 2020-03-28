@@ -25,10 +25,10 @@ const couches = {};
 app.post("/api/", (req, res) => {
   const couch = randomizeCouchId();
   if (!couches[couch]) {
-    couches[couch] = true;
+    couches[couch] = { users: {} };
   } else {
     couch = randomizeCouchId();
-    couches[couch] = true;
+    couches[couch] = { users: {} };
   }
   res.redirect(couch);
 });
@@ -49,21 +49,34 @@ server.listen(port, function() {
 io.on("connection", socket => {
   socket.on("new-user", (couch, name) => {
     socket.join(couch);
+    couches[couch].users[socket.id] = name;
     io.in(couch).emit("user-connected", name);
   });
   socket.on("send-chat-message", (message, username, couch) => {
-    io.in(couch).emit(
-      "receive-message",
-      {
-        message: message,
-        username: username,
-      }
-    );
-    socket.on("disconnect", (name, couch) => {
-      io.in(couch).emit("user-disconnected", name);
+    io.in(couch).emit("receive-message", {
+      message: message,
+      username: username
+    });
+    socket.on("disconnecting", () => {
+      console.log("heyheyhey");
+      //console.log(name, couch);
+      getUserRooms(socket).forEach(couch => {
+        socket
+          .to(couch)
+          .broadcast.emit("user-disconnected", couches[couch].users[socket.id]);
+        delete couches[couch].users[socket.id];
+      });
+      //socket.broadcast.emit("user-disconnected");
     });
   });
 });
+
+function getUserRooms(socket) {
+  return Object.entries(couches).reduce((names, [name, couch]) => {
+    if (couch.users[socket.id] != null) names.push(name);
+    return names;
+  }, []);
+}
 
 // error handling middleware
 app.use((err, req, res, next) => {

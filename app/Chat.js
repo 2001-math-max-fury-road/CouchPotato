@@ -1,40 +1,44 @@
-import React from 'react';
-import Socket from './Socket';
+import React from "react";
+import Socket from "./Socket";
 
 export default class Chat extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      message: '',
-      messages: [],
+      message: "",
+      messages: []
     };
 
-    Socket.on('user-connected', username => {
+    Socket.on("user-connected", username => {
       const message = `${username} connected`;
       const msgObj = { message, username };
       this.setState({ messages: [...this.state.messages, msgObj] });
     });
 
-    Socket.on('user-disconnected', username => {
+    Socket.on("user-disconnected", username => {
       const message = `${username} disconnected`;
       const msgObj = { message, username };
       this.setState({ messages: [...this.state.messages, msgObj] });
     });
 
-    Socket.on('receive-message', msgObj => {
+    Socket.on("receive-message", msgObj => {
       this.setState({ messages: [...this.state.messages, msgObj] });
     });
 
     this.sendMessage = event => {
       event.preventDefault();
       Socket.emit(
-        'send-chat-message',
+        "send-chat-message",
         this.state.message,
         this.props.username,
         this.props.couchId
       );
-      this.setState({ message: '' });
+      this.setState({ message: "" });
     };
+  }
+
+  componentWillUnmount() {
+    Socket.emit("disconnecting");
   }
 
   render() {
