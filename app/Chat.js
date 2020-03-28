@@ -5,16 +5,17 @@ export default class Chat extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      couchId: this.props.couchId, 
-      username: this.props.username,
+      // couchId: props.couchId,
+      // username: props.username,
       message: '',
       messages: [],
     };
-    
+
 
     Socket.on('user-connected', username => {
-      const msg = `${username} connected`;
-      this.setState({ messages: [...this.state.messages, msg] });
+      const message = `${username} connected`;
+      const msgObj = {message, username}
+      this.setState({ messages: [...this.state.messages, msgObj] });
     });
 
     Socket.on('user-disconnected', username => {
@@ -28,12 +29,11 @@ export default class Chat extends React.Component {
 
     this.sendMessage = event => {
       event.preventDefault();
-      Socket.emit('send-chat-message', this.state.message);
+      Socket.emit('send-chat-message', this.state.message, this.props.username);
       this.setState({ message: '' });
     };
-    Socket.on('receive-message', msg => {
-      console.log('msg', msg)
-      addMessage(msg);
+    Socket.on('receive-message', msgObj => {
+      addMessage(msgObj);
     });
   }
 
@@ -52,8 +52,13 @@ export default class Chat extends React.Component {
   //   }
   // }
 
+  // componentDidMount(){
+  //   this.setState({couchId: this.props.couchId,
+  //     username: this.props.username})
+  // }
+
   render() {
-   // console.log(Socket)
+    console.log('props in chat render', this.props.couchId)
     return (
       <div>
         <h3>Share this Couch ID: {this.props.couchId}</h3>
@@ -61,7 +66,7 @@ export default class Chat extends React.Component {
           {this.state.messages.map(message => {
             return (
               <li>
-                {this.props.username}: {message}
+                {message.username}: {message.message}
               </li>
             );
           })}

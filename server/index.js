@@ -30,14 +30,6 @@ app.post("/api/", (req, res) => {
     couch = randomizeCouchId();
     couches[couch] = { users: {}, messages: [] };
   }
-  console.log(
-    "1. couches",
-    couches,
-    "users",
-    couches[couch].users,
-    "couchId",
-    couch
-  );
   res.redirect(couch);
 });
 
@@ -59,15 +51,21 @@ io.on("connection", socket => {
     socket.join(couch);
     couches[couch].users[socket.id] = name;
     socket.emit("user-connected", name);
+    let socketsOfRoom1 = io.sockets.clients(couch)
+    let numberOfClientsInRoom1 = socketsOfRoom1.length
+    console.log(numberOfClientsInRoom1)
+    socketsOfRoom1.forEach((socket) => {
+      console.log(socket)
+    })
   });
-  socket.on("send-chat-message", (message) => {
+
+  socket.on("send-chat-message", (message, username) => {
     socket.emit(
       "receive-message",
-      message
-      // {
-      //   message: message,
-      //   // name: couches[couch].users[socket.id],
-      // }
+      {
+        message: message,
+        username: username,
+      }
     );
     socket.on("disconnect", (name) => {
       socket.emit("user-disconnected", name);
