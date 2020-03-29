@@ -8,17 +8,15 @@ export default class Chat extends React.Component {
       message: "",
       messages: []
     };
-
+    
     Socket.on("user-connected", username => {
-      const message = `${username} connected`;
-      const msgObj = { message, username };
-      this.setState({ messages: [...this.state.messages, msgObj] });
+      const message = `${username} joined the Couch`;
+      this.setState({ messages: [...this.state.messages, message] });
     });
 
     Socket.on("user-disconnected", username => {
-      const message = `${username} disconnected`;
-      const msgObj = { message, username };
-      this.setState({ messages: [...this.state.messages, msgObj] });
+      const message = `${username} has left the Couch`;
+      this.setState({ messages: [...this.state.messages, message] });
     });
 
     Socket.on("receive-message", msgObj => {
@@ -30,11 +28,17 @@ export default class Chat extends React.Component {
       Socket.emit(
         "send-chat-message",
         this.state.message,
-        this.props.username,
-        this.props.couchId
+        localStorage.username,
+        localStorage.couchId
       );
       this.setState({ message: "" });
     };
+  }
+
+  componentDidMount() { 
+    const username = localStorage.getItem('username')
+    const couchId = localStorage.getItem('couchId')
+    Socket.emit('new-user', couchId, username)
   }
 
   componentWillUnmount() {
@@ -44,14 +48,22 @@ export default class Chat extends React.Component {
   render() {
     return (
       <div>
-        <h3>Share this Couch ID: {this.props.couchId}</h3>
+        <h3>Share this Couch ID: {localStorage.couchId}</h3>
         <ul id="messages">
           {this.state.messages.map(message => {
-            return (
-              <li>
-                {message.username}: {message.message}
-              </li>
-            );
+            if(message.username) { 
+              return (
+                <li>
+                  {message.username}: {message.message}
+                </li>
+              );
+            } else { 
+              return ( 
+                <li>
+                  {message}
+                </li>
+              )
+            }
           })}
         </ul>
         <form id="chat-form" action="">

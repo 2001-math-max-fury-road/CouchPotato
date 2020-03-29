@@ -1,7 +1,4 @@
 import React from 'react';
-import Socket from './Socket'
-import Chat from './Chat'
-import axios from 'axios';
 
 export default class JoinPopup extends React.Component {
   constructor() {
@@ -16,7 +13,9 @@ export default class JoinPopup extends React.Component {
 
   joinCouch(event) {
     event.preventDefault();
-    Socket.emit('new-user', this.state.couchId, this.state.username)
+    localStorage.setItem('couchId', this.state.couchId)
+    localStorage.setItem('username', this.state.username)
+    location.replace(`http://localhost:3000/${this.state.couchId}`)
   }
 
   handleChange(event) {
@@ -39,7 +38,6 @@ export default class JoinPopup extends React.Component {
             <button onClick={this.joinCouch}>Join Couch</button>
           </form>
         </div>
-        <Chat couchId={this.state.couchId} username={this.state.username}/>
       </div>
     );
   }
