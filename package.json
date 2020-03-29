@@ -18,6 +18,7 @@
         "start-dev": "webpack -w & nodemon server", 
         "deploy": "script/deploy"
     },
+    "heroku-run-build-script": true,
     "devDependencies": {
         "@babel/core": "^7.9.0",
         "@babel/preset-react": "^7.9.4",
