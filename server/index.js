@@ -5,8 +5,7 @@ const path = require("path");
 const port = process.env.PORT || 3000;
 const volleyball = require("volleyball");
 const io = require("socket.io")(server);
-const router = require("express").Router();
-const {couches, randomizeCouchId, getUserCouches} = require("./utils");
+const { couches, randomizeCouchId, getUserCouches } = require("./utils");
 
 app.set("view engine", "html");
 
@@ -55,13 +54,13 @@ io.on("connection", socket => {
       message: message,
       username: username
     });
-    socket.on("disconnect", () => {
-      getUserCouches(socket).forEach(couch => {
-        socket
-          .to(couch)
-          .broadcast.emit("user-disconnected", couches[couch].users[socket.id]);
-        delete couches[couch].users[socket.id];
-      });
+  });
+  socket.on("disconnect", () => {
+    getUserCouches(socket).forEach(couch => {
+      socket
+        .to(couch)
+        .broadcast.emit("user-disconnected", couches[couch].users[socket.id]);
+      delete couches[couch].users[socket.id];
     });
   });
 });
