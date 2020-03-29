@@ -5,8 +5,7 @@ const path = require("path");
 const port = process.env.PORT || 3000;
 const volleyball = require("volleyball");
 const io = require("socket.io")(server);
-const router = require("express").Router();
-const randomizeCouchId = require("./utils");
+const { couches, randomizeCouchId, getUserCouches } = require("./utils");
 
 app.set("view engine", "html");
 
@@ -19,16 +18,14 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const couches = {};
-
 // route for starting a new couch
 app.post("/api/", (req, res) => {
   const couch = randomizeCouchId();
   if (!couches[couch]) {
-    couches[couch] = true;
+    couches[couch] = { users: {} };
   } else {
     couch = randomizeCouchId();
-    couches[couch] = true;
+    couches[couch] = { users: {} };
   }
   res.redirect(couch);
 });
@@ -49,18 +46,21 @@ server.listen(port, function() {
 io.on("connection", socket => {
   socket.on("new-user", (couch, name) => {
     socket.join(couch);
+    couches[couch].users[socket.id] = name;
     io.in(couch).emit("user-connected", name);
   });
   socket.on("send-chat-message", (message, username, couch) => {
-    io.in(couch).emit(
-      "receive-message",
-      {
-        message: message,
-        username: username,
-      }
-    );
-    socket.on("disconnect", (name, couch) => {
-      io.in(couch).emit("user-disconnected", name);
+    io.in(couch).emit("receive-message", {
+      message: message,
+      username: username
+    });
+  });
+  socket.on("disconnect", () => {
+    getUserCouches(socket).forEach(couch => {
+      socket
+        .to(couch)
+        .broadcast.emit("user-disconnected", couches[couch].users[socket.id]);
+      delete couches[couch].users[socket.id];
     });
   });
 });
