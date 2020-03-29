@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
-import Chat from './Chat';
 import JoinPopup from './Popup-Join'
 import StartPopup from './Popup-Start'
 
@@ -21,9 +19,7 @@ export default class HomePage extends Component {
     }
 
     render() { 
-
         return ( 
-
             <div id='homepage'>
                 <h1>Welcome to Couch Potato!</h1>
                 <button onClick={this.toggleJoinPopup}>Join a Couch</button>
