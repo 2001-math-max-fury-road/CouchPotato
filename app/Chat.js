@@ -38,7 +38,7 @@ export default class Chat extends React.Component {
   }
 
   componentWillUnmount() {
-    Socket.emit("disconnecting");
+    Socket.emit("disconnect");
   }
 
   render() {

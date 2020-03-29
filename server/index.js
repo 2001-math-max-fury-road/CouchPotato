@@ -6,7 +6,7 @@ const port = process.env.PORT || 3000;
 const volleyball = require("volleyball");
 const io = require("socket.io")(server);
 const router = require("express").Router();
-const randomizeCouchId = require("./utils");
+const {couches, randomizeCouchId, getUserCouches} = require("./utils");
 
 app.set("view engine", "html");
 
@@ -18,8 +18,6 @@ app.use(volleyball.custom({ debug }));
 app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-const couches = {};
 
 // route for starting a new couch
 app.post("/api/", (req, res) => {
@@ -57,26 +55,16 @@ io.on("connection", socket => {
       message: message,
       username: username
     });
-    socket.on("disconnecting", () => {
-      console.log("heyheyhey");
-      //console.log(name, couch);
-      getUserRooms(socket).forEach(couch => {
+    socket.on("disconnect", () => {
+      getUserCouches(socket).forEach(couch => {
         socket
           .to(couch)
           .broadcast.emit("user-disconnected", couches[couch].users[socket.id]);
         delete couches[couch].users[socket.id];
       });
-      //socket.broadcast.emit("user-disconnected");
     });
   });
 });
-
-function getUserRooms(socket) {
-  return Object.entries(couches).reduce((names, [name, couch]) => {
-    if (couch.users[socket.id] != null) names.push(name);
-    return names;
-  }, []);
-}
 
 // error handling middleware
 app.use((err, req, res, next) => {
