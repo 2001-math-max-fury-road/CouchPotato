@@ -8,7 +8,7 @@ const Root = () => {
         <Router>
             <div>
             <Route exact path="/" component={HomePage} />
-            <Route path="/:couch" component={Chat} />
+            <Route path="/:couchId" component={Chat} />
             </div>
         </Router>
     )
