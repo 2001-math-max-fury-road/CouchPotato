@@ -15,7 +15,8 @@
     },
     "scripts": {
         "start": "node server",
-        "start-dev": "webpack -w & nodemon server"
+        "start-dev": "webpack -w & nodemon server", 
+        "deploy": "script/deploy"
     },
     "devDependencies": {
         "@babel/core": "^7.9.0",
