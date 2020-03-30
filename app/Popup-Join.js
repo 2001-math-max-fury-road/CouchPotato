@@ -20,7 +20,7 @@ export default class JoinPopup extends React.Component {
     localStorage.setItem("couchId", this.state.couchId);
     localStorage.setItem("username", this.state.username);
     location.replace(
-      `http://couch-potato-extension.herokuapp.com/${this.state.couchId}`
+      `http://localhost:3000/${this.state.couchId}`
     );
   }
 
@@ -40,7 +40,7 @@ export default class JoinPopup extends React.Component {
       <div className="popup">
         <div className="popup\_inner">
           <form id="popup-form" onChange={this.handleChange}>
-            <label htmlFor="couchId">Couch ID: 
+            <label htmlFor="couchId">Couch ID:
             {!this.state.couchId && this.state.couchWarning && (
                 <span className="warning"> {this.state.couchWarning}</span>
               )}</label>

@@ -15,14 +15,14 @@ export default class StartPopup extends React.Component {
     this.setState({ couchId: data.couchId });
     localStorage.setItem('couchId', this.state.couchId)
     localStorage.setItem('username', this.state.username)
-    location.replace(`http://couch-potato-extension.herokuapp.com/${this.state.couchId}`)
+    location.replace(`http://localhost:3000/${this.state.couchId}`)
   }
 
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  render() { 
+  render() {
     return (
       <div className="popup">
         <div className="popup\_inner">
