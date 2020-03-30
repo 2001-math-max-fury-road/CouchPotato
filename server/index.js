@@ -21,12 +21,14 @@ app.use(express.urlencoded({ extended: true }));
 // route for starting a new couch
 app.post("/api/", (req, res) => {
   const couch = randomizeCouchId();
-  if (!couches[couch]) {
-    couches[couch] = { users: {} };
-  } else {
-    couch = randomizeCouchId();
-    couches[couch] = { users: {} };
-  }
+  // if (!couches[couch]) {
+  //   couches[couch] = { users: {} };
+  // } else {
+  //   couch = randomizeCouchId();
+  //   couches[couch] = { users: {} };
+  // }
+  couches[couch] = { users: {} };
+
   res.redirect(couch);
 });
 
