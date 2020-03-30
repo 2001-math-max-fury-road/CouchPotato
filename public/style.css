@@ -72,3 +72,11 @@ button {
   margin: 2em;
   padding: 10px;
 }
+.warning {
+  padding: 0 0.5em;
+  font-size: 1em;
+  letter-spacing: 0.1em;
+  background-color: orange;
+  color: white;
+  margin-left: 1em;
+}
