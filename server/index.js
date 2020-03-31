@@ -21,12 +21,8 @@ app.use(express.urlencoded({ extended: true }));
 // route for starting a new couch
 app.post("/api/", (req, res) => {
   const couch = randomizeCouchId();
-  //if (couches[couch]) {
   couches[couch] = { users: {} };
   res.redirect(couch);
-  //} else {
-  //res.sendStatus(404);
-  // }
 });
 
 // route for joining an existing couch
