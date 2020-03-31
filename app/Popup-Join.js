@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react';
 
 export default class JoinPopup extends React.Component {
   constructor() {
     super();
     this.state = {
-      couchId: "",
-      username: "",
-      couchWarning: "Please enter a valid Couch ID",
-      usernameWarning: "Username cannot be empty"
+      couchId: '',
+      username: '',
+      couchWarning: 'Please enter a valid Couch ID',
+      usernameWarning: 'Username cannot be empty'
     };
 
     this.joinCouch = this.joinCouch.bind(this);
@@ -17,11 +17,9 @@ export default class JoinPopup extends React.Component {
 
   joinCouch(event) {
     event.preventDefault();
-    localStorage.setItem("couchId", this.state.couchId);
-    localStorage.setItem("username", this.state.username);
-    location.replace(
-      `http://localhost:3000/${this.state.couchId}`
-    );
+    localStorage.setItem('couchId', this.state.couchId);
+    localStorage.setItem('username', this.state.username);
+    location.replace(`http://localhost:3000/${this.state.couchId}`);
   }
 
   handleChange(event) {
@@ -40,21 +38,24 @@ export default class JoinPopup extends React.Component {
       <div className="popup">
         <div className="popup\_inner">
           <form id="popup-form" onChange={this.handleChange}>
-            <label htmlFor="couchId">Couch ID:
-            {!this.checkCouchNum(this.state.couchId) && this.state.couchWarning && (
-                <span className="warning"> {this.state.couchWarning}</span>
-              )}</label>
-            <input name="couchId"></input>
+            <label htmlFor="couchId">
+              {!this.checkCouchNum(this.state.couchId) &&
+                this.state.couchWarning && (
+                  <span className="warning"> {this.state.couchWarning}</span>
+                )}
+            </label>
+            <input name="couchId" placeholder="Couch ID" />
             <label htmlFor="username">
-              Your Name:
               {!this.state.username && this.state.usernameWarning && (
                 <span className="warning"> {this.state.usernameWarning}</span>
               )}
             </label>
-            <input name="username"></input>
+            <input name="username" placeholder="Your name" />
             <button
               type="submit"
-              disabled={!this.checkCouchNum(this.state.couchId) || !this.state.username}
+              disabled={
+                !this.checkCouchNum(this.state.couchId) || !this.state.username
+              }
               onClick={this.joinCouch}
             >
               Join Couch

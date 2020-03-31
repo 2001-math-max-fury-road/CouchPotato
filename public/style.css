@@ -18,6 +18,7 @@ body {
 }
 #home-h1-container {
   display: flex;
+  /* flex-direction: column; */
   justify-content: center;
 }
 #homepage h1 {
@@ -31,11 +32,7 @@ body {
   background-color: #000;
 }
 #chat-container {
-  /* background-color: #000; */
   color: #c8c8c8;
-  /* display: flex; */
-  /* flex-direction: column; */
-  height: 100%;
 }
 #chat-container h3 {
   padding: 1em;
@@ -49,7 +46,7 @@ body {
   display: flex;
 }
 #chat-form input {
-  /* border: 1pt solid #3c3c3c; */
+  border: 1pt solid #3c3c3c;
   padding: 10px;
   width: 90%;
   margin-right: 0.5%;
@@ -102,10 +99,11 @@ button {
   padding: 10px;
 }
 #popup-form input {
-  border: 0;
+  border: 1pt solid #3c3c3c;
   padding: 10px;
   width: 100%;
   margin-right: 1%;
+  margin-bottom: 2em;
   background-color: #1e1e1e;
   color: #c8c8c8;
 }

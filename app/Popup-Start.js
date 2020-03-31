@@ -32,12 +32,11 @@ export default class StartPopup extends React.Component {
         <div className="popup\_inner">
           <form id="popup-form" onChange={this.handleChange}>
             <label htmlFor="username">
-              Your Name:
               {!this.state.username && this.state.usernameWarning && (
                 <span className="warning"> {this.state.usernameWarning}</span>
               )}
             </label>
-            <input name="username"></input>
+            <input name="username" placeholder="Your name" />
             <button onClick={this.startCouch}>Start New Couch</button>
           </form>
         </div>
