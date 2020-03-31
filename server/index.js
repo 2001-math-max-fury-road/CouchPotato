@@ -21,15 +21,12 @@ app.use(express.urlencoded({ extended: true }));
 // route for starting a new couch
 app.post("/api/", (req, res) => {
   const couch = randomizeCouchId();
-  // if (!couches[couch]) {
-  //   couches[couch] = { users: {} };
-  // } else {
-  //   couch = randomizeCouchId();
-  //   couches[couch] = { users: {} };
-  // }
+  //if (couches[couch]) {
   couches[couch] = { users: {} };
-
   res.redirect(couch);
+  //} else {
+  //res.sendStatus(404);
+  // }
 });
 
 // route for joining an existing couch
@@ -47,9 +44,14 @@ server.listen(port, function() {
 
 io.on("connection", socket => {
   socket.on("new-user", (couch, name) => {
-    socket.join(couch);
-    couches[couch].users[socket.id] = name;
-    io.in(couch).emit("user-connected", name);
+    const error = "Not the right Couch";
+    if (couches[couch]) {
+      socket.join(couch);
+      couches[couch].users[socket.id] = name;
+      io.in(couch).emit("user-connected", name);
+    } else {
+      socket.emit(error);
+    }
   });
   socket.on("send-chat-message", (message, username, couch) => {
     io.in(couch).emit("receive-message", {
