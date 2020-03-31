@@ -54,6 +54,10 @@ body {
   color: #c8c8c8;
   margin: 1.5em;
 }
+.scroll-to-bottom {
+  height: 600;
+  width: 400;
+}
 form button {
   width: 9%;
   background: #3dbb3d;

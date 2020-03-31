@@ -1,7 +1,7 @@
 import React from 'react';
 import Socket from './Socket';
-import { animateScroll } from 'react-scroll';
-// import ScrollToBottom from 'react-scroll-to-bottom';
+// import { animateScroll } from 'react-scroll';
+import ScrollToBottom from 'react-scroll-to-bottom';
 
 export default class Chat extends React.Component {
   constructor(props) {
@@ -10,7 +10,7 @@ export default class Chat extends React.Component {
       message: '',
       messages: []
     };
-    this.scrollToBottom = this.scrollToBottom.bind(this);
+    // this.scrollToBottom = this.scrollToBottom.bind(this);
 
     Socket.on('user-connected', username => {
       const message = `${username} joined the Couch`;
@@ -37,25 +37,31 @@ export default class Chat extends React.Component {
       this.setState({ message: '' });
     };
   }
-  scrollToBottom() {
-    // scroll.scrollTop = scroll.scrollHeight;
-    this.messagesEnd.scrollIntoView({ behavior: 'smooth' });
-  }
 
   componentDidMount() {
     const username = localStorage.getItem('username');
     const couchId = localStorage.getItem('couchId');
     Socket.emit('new-user', couchId, username);
-    this.scrollToBottom();
+    // this.scrollToBottom();
   }
 
   componentDidUpdate() {
-    this.scrollToBottom();
-    // const scroll = document.querySelector('.chat');
+    // this.scrollToBottom();
+    // function scrollToBottom() {
+    //   elemToScroll.scrollTop = scroll.scrollHeight;
+    //   // this.messagesEnd.scrollIntoView({ behavior: 'smooth' });
+    // }
+    // const elemToScroll = document.querySelector('.chat');
     // const observer = new MutationObserver(scrollToBottom);
-    // const config = {childList: true};
+    // const config = { childList: true };
     // observer.observe(scroll, config);
   }
+
+  // scrollToBottom() {
+  //   animateScroll.scrollToBottom({
+  //     containerId: 'chat-container'
+  //   });
+  // }
 
   componentWillUnmount() {
     Socket.emit('disconnect');
@@ -66,30 +72,32 @@ export default class Chat extends React.Component {
       <div id="outer-container">
         <div id="chat-container">
           <h3>Share this Couch ID: {localStorage.couchId}</h3>
-          <div className="chat">
-            {/* <ScrollToBottom> */}
+          {/* <ScrollToBottom> */}
+          <div>
             <ul id="messages">
-              {this.state.messages.map(message => {
-                if (message.username) {
-                  return (
-                    <li>
-                      {message.username}: {message.message}
-                    </li>
-                  );
-                } else {
-                  return <li>{message}</li>;
-                }
-              })}
+              <ScrollToBottom className="scroll-to-bottom">
+                {this.state.messages.map(message => {
+                  if (message.username) {
+                    return (
+                      <li>
+                        {message.username}: {message.message}
+                      </li>
+                    );
+                  } else {
+                    return <li>{message}</li>;
+                  }
+                })}
+              </ScrollToBottom>
             </ul>
-            <div
+          </div>
+          {/* <div
               id="end-chat"
               style={{ float: 'left', clear: 'both' }}
               ref={el => {
                 this.messagesEnd = el;
               }}
-            ></div>
-            {/* </ScrollToBottom> */}
-          </div>
+            ></div> */}
+          {/* </ScrollToBottom> */}
           <form id="chat-form" action="">
             <input
               type="text"
