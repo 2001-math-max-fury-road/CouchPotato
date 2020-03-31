@@ -1,52 +1,44 @@
-# Couch Potato -- Chrome Extension
+# Couch Potato
 
-## Tier 1: MVP Streaming Experience
+Couch Potato is a Chrome extension allowing multiple users to remotely and simultaneously stream video content, compatible with the Hulu web player.
 
-### Simultaneous Streaming
-- two or more logged-in users are able to watch the same Hulu content at the same continuous time stamp, pausing each screen when one user pauses their screen
+## Getting Started
 
-- if users are viewing a TV show, the video seamlessly transitions to the next episode once an episode has ended
+In order to test this program on a local machine, you will have to update references to `couch-potato-extension.herokuapp.com` with your local host (e.g. `http://localhost:3000`).
 
-### Chat
-- two or more logged-in users are able to use text chatting features while they watch Hulu content
+```
+npm install
+npm run start-dev
+```
 
-- users are able to minimize the chat window in order to watch content in full-screen mode if desired
+For convenience, we have included a `comments` branch which includes explanations of our code.
 
-- each user can have their own avatar, and change their names, statuses
+```
+git checkout comments
+```
 
+## Built With
 
-## Tier 2: Enhanced Chat Experience
-- chat is integrated into the user's browser window as an overlay
+- [Chrome Extensions](https://developer.chrome.com/extensions/getstarted) - The architecture used
+- [Socket.io](https://socket.io/get-started/chat) - Real-time chat features
+- [React.js](https://reactjs.org/) - Building user interface
 
-- users have access to various emoji notifications and can activate notifications to other users in the room
-  - drinking game
-  - throw popcorn at screen
-  - laughing emoji, etc
+## Authors
 
-- when chat is minimized, user avatars are displayed along the side of screen
+- **Dani Meyer** - [GitHub Profile](https://github.com/dlm19)
+- **Eunjoon Hwang** - [GitHub Profile](https://github.com/joonybejoy)
+- **Grace Murray** - [GitHub Profile](https://github.com/gkmurray124)
+- **Caitlin Floyd** - [GitHub Profile](https://github.com/cafloyd)
 
+## License
 
-## Tier 3: Multiple Streaming Services Experience
-- users can watch content from additional streaming platforms (Youtube, Netflix, Disney+, Amazon)
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
-- users are able to record voice messages to send to the rest of the room
+## Acknowledgments
 
+- We drew inspiration from the [Netflix Party extension](https://chrome.google.com/webstore/detail/netflix-party/oocalimimngaihdkbihfgmpkcpnmlaoa?hl=en) and looked at the [source code](https://github.com/netflixparty1/netflixparty-chrome) to help us get started
 
-## Tier 4:
-- program recognizes when the user is laughing and activates the laughing emoji notification
+### Tutorials
 
-- users have access to crowd data if there are any noteworthy trends (for example, if many users have reacted with a laughing emoji for a specific scene, users can toggle an option to see that data visualized during that scene)
-
-- users can have friends, and when they activate the extension, they can see if any of their friends are currently watching anything
-
-
-# Resources Used:
-- We drew inspiration from the Netflix Party Chrome extension (https://chrome.google.com/webstore/detail/netflix-party/oocalimimngaihdkbihfgmpkcpnmlaoa?hl=en) and looked at the source code (https://github.com/netflixparty1/netflixparty-chrome) to help us get started.
-
-- We watched this tutorial on integrating socket.io into a Chrome extension (https://www.youtube.com/watch?v=1zVoGTQUXvs) and referenced the corresponding repo (https://github.com/matthewlawson/lnm-socket.io)
-
-- Socket.io documentation: https://socket.io/get-started/chat
-
-- Build and deploy the chat application with Node, Express,Socket.io, React https://www.youtube.com/watch?v=UymGJnv-WsE
-
-- Creating a Chrome Extension https://developer.chrome.com/extensions/getstarted
+- Integrating Socket.io into a Chrome Extension: [Video](https://www.youtube.com/watch?v=1zVoGTQUXvs) and [corresponding repo](https://github.com/matthewlawson/lnm-socket.io)
+- Build Real Time Chat Rooms With Node.js And Socket.io: [Video](https://www.youtube.com/watch?v=UymGJnv-WsE) and [corresponding repo](https://github.com/WebDevSimplified/Realtime-Chat-App-With-Rooms)
