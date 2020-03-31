@@ -22,7 +22,11 @@ export default class HomePage extends Component {
     return (
       <div id="homepage">
         <div id="home-h1-container">
-          <h1>Welcome to Couch Potato!</h1>
+          <h1>Hey Couch Potato!</h1>
+        </div>
+        <div id="intro">
+          <p>Have a couch already? Click “Join a Couch”!</p>
+          <p>Otherwise, click “Start a Couch” to get the party started!</p>
         </div>
         <div id="button-container">
           <button onClick={this.toggleJoinPopup}>Join a Couch</button>

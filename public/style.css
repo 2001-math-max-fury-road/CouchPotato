@@ -18,11 +18,23 @@ body {
 }
 #home-h1-container {
   display: flex;
-  /* flex-direction: column; */
+  padding: 1em;
   justify-content: center;
 }
 #homepage h1 {
   color: #c1edcc;
+}
+#intro {
+  color: #c1edcc;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 1em;
+  font-size: 18px;
+}
+#intro p {
+  padding: 0.5em;
 }
 #button-container {
   display: flex;
