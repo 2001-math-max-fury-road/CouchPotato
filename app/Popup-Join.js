@@ -41,7 +41,7 @@ export default class JoinPopup extends React.Component {
         <div className="popup\_inner">
           <form id="popup-form" onChange={this.handleChange}>
             <label htmlFor="couchId">Couch ID:
-            {!this.state.couchId && this.state.couchWarning && (
+            {!this.checkCouchNum(this.state.couchId) && this.state.couchWarning && (
                 <span className="warning"> {this.state.couchWarning}</span>
               )}</label>
             <input name="couchId"></input>
