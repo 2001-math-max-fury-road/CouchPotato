@@ -52,7 +52,6 @@ export default class Chat extends React.Component {
           <h3>Share this Couch ID: {localStorage.couchId}</h3>
           <div>
             <ul id="messages">
-              <ScrollToBottom className="scroll-to-bottom">
                 {this.state.messages.map(message => {
                   if (message.username) {
                     return (
@@ -64,7 +63,6 @@ export default class Chat extends React.Component {
                     return <li>{message}</li>;
                   }
                 })}
-              </ScrollToBottom>
             </ul>
           </div>
           <form id="chat-form" action="">
