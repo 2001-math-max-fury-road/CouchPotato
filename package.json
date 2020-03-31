@@ -10,12 +10,14 @@
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
         "react-router-dom": "^5.1.2",
+        "react-scroll": "^1.7.16",
+        "react-scroll-to-bottom": "^1.3.2",
         "socket.io": "^2.3.0",
         "volleyball": "^1.5.1"
     },
     "scripts": {
         "start": "node server",
-        "start-dev": "webpack -w & nodemon server", 
+        "start-dev": "webpack -w & nodemon server",
         "deploy": "script/deploy"
     },
     "heroku-run-build-script": true,
