@@ -46,8 +46,16 @@ body {
 #chat-container {
   color: #c8c8c8;
 }
-#chat-container h3 {
+#chat-header {
   padding: 1em;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #000;
+}
+#chat-container h3 {
+  padding-bottom: 0.5em;
 }
 #chat-form {
   background: #000;
@@ -88,7 +96,8 @@ button {
   color: #c8c8c8;
   list-style-type: none;
   margin: 0.5;
-  /* padding: 0.5em; */
+  margin-top: 75px;
+  margin-bottom: 100px;
 }
 #messages li {
   padding: 5px 10px;
@@ -97,9 +106,6 @@ button {
   background: #3c3c3c;
   color: #c8c8c8;
 }
-/* #end-chat {
-  background: #000;
-} */
 .popup {
   width: 100%;
   height: 50%;

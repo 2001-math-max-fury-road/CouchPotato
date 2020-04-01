@@ -7,7 +7,7 @@ export default class Chat extends React.Component {
     this.state = {
       message: '',
       messages: [],
-      users: [],
+      users: []
     };
 
     Socket.on('user-connected', (username, users) => {
@@ -16,13 +16,13 @@ export default class Chat extends React.Component {
     });
 
     Socket.on('user-disconnected', (socket, couch) => {
-      const username = couch[socket]
+      const username = couch[socket];
       const message = `${username} has left the Couch`;
-      delete couch[socket]
-      const updatedUsers = Object.values(couch)
+      delete couch[socket];
+      const updatedUsers = Object.values(couch);
       this.setState({
         messages: [...this.state.messages, message],
-        users: updatedUsers,
+        users: updatedUsers
       });
     });
 
@@ -57,8 +57,10 @@ export default class Chat extends React.Component {
     return (
       <div id="outer-container">
         <div id="chat-container">
-          <h3>Share this Couch ID: {localStorage.couchId}</h3>
-          <p>Current Seatmates: {users}</p>
+          <div id="chat-header">
+            <h3>Share this Couch ID: {localStorage.couchId}</h3>
+            <p>Current Seatmates: {users}</p>
+          </div>
           <div>
             <ul id="messages">
               {this.state.messages.map(message => {
