@@ -39,6 +39,7 @@ export default class Chat extends React.Component {
         localStorage.couchId
       );
       this.setState({ message: '' });
+      window.scrollTo(0, document.body.scrollHeight);
     };
   }
 

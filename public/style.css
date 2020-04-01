@@ -36,6 +36,29 @@ body {
 #intro p {
   padding: 0.5em;
 }
+#help-button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#help-button {
+  background: #119da4;
+  width: 30%;
+  height: 3em;
+}
+#instructions {
+  background-color: #104547;
+  border: solid 1pt #119da4;
+  padding: 1em;
+}
+#instructions p {
+  color: #c8c8c8;
+  padding-bottom: 1em;
+}
+#instructions h2 {
+  color: #c8c8c8;
+  padding-bottom: 0.5em;
+}
 #button-container {
   display: flex;
   justify-content: center;
@@ -84,6 +107,10 @@ form button {
   border: none;
   padding: 10px;
 }
+#button-container button {
+  height: 4em;
+  width: 150%;
+}
 button {
   width: 20%;
   height: 15%;
@@ -97,7 +124,7 @@ button {
   list-style-type: none;
   margin: 0.5;
   margin-top: 75px;
-  margin-bottom: 100px;
+  margin-bottom: 125px;
   height: 50%;
 }
 #messages li {
