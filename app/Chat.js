@@ -29,7 +29,8 @@ export default class Chat extends React.Component {
     });
 
     Socket.on('receive-message', msgObj => {
-      this.setState({ messages: [...this.state.messages, msgObj] });
+      this.setState({ messages: [...this.state.messages, msgObj] });    
+      window.scrollTo(0, document.body.scrollHeight);
     });
 
     this.sendMessage = event => {
