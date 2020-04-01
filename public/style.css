@@ -34,7 +34,39 @@ body {
   font-size: 18px;
 }
 #intro p {
-  padding: 0.5em;
+  padding: 0.7em;
+}
+#copy-to-clipboard {
+  width: 15%;
+  height: 10%;
+  background: #3dbb3d;
+  border: black;
+  margin: 0.5em;
+  padding: 2px;
+}
+
+  #help-button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#help-button {
+  background: #119da4;
+  width: 30%;
+  height: 3em;
+}
+#instructions {
+  background-color: #104547;
+  border: solid 1pt #119da4;
+  padding: 1em;
+}
+#instructions p {
+  color: #c8c8c8;
+  padding-bottom: 1em;
+}
+#instructions h2 {
+  color: #c8c8c8;
+  padding-bottom: 0.5em;
 }
 #button-container {
   display: flex;
@@ -46,8 +78,16 @@ body {
 #chat-container {
   color: #c8c8c8;
 }
+#chat-header {
+  padding: 0.3em;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #000;
+}
 #chat-container h3 {
-  padding: 1em;
+  padding-bottom: 0.5em;
 }
 #chat-form {
   background: #000;
@@ -76,6 +116,10 @@ form button {
   border: none;
   padding: 10px;
 }
+#button-container button {
+  height: 4em;
+  width: 150%;
+}
 button {
   width: 20%;
   height: 15%;
@@ -88,18 +132,18 @@ button {
   color: #c8c8c8;
   list-style-type: none;
   margin: 0.5;
-  /* padding: 0.5em; */
+  margin-top: 75px;
+  margin-bottom: 125px;
+  height: 50%;
 }
 #messages li {
   padding: 5px 10px;
+  overflow: auto;
 }
 #messages li:nth-child(odd) {
   background: #3c3c3c;
   color: #c8c8c8;
 }
-/* #end-chat {
-  background: #000;
-} */
 .popup {
   width: 100%;
   height: 50%;

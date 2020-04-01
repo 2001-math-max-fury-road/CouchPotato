@@ -44,7 +44,8 @@ io.on("connection", socket => {
     if (couches[couch]) {
       socket.join(couch);
       couches[couch].users[socket.id] = name;
-      io.in(couch).emit("user-connected", name);
+      const users = Object.values(couches[couch].users)
+      io.in(couch).emit("user-connected", name, users);
     } else {
       socket.emit(error);
     }
@@ -59,7 +60,7 @@ io.on("connection", socket => {
     getUserCouches(socket).forEach(couch => {
       socket
         .to(couch)
-        .broadcast.emit("user-disconnected", couches[couch].users[socket.id]);
+        .broadcast.emit("user-disconnected", socket.id, couches[couch].users);
       delete couches[couch].users[socket.id];
     });
   });

@@ -1,22 +1,31 @@
 import React from 'react';
 import Socket from './Socket';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 export default class Chat extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       message: '',
-      messages: []
+      messages: [],
+      users: []
     };
+    this.copiedToClipboard = this.copiedToClipboard.bind(this);
 
-    Socket.on('user-connected', username => {
+    Socket.on('user-connected', (username, users) => {
       const message = `${username} joined the Couch`;
-      this.setState({ messages: [...this.state.messages, message] });
+      this.setState({ messages: [...this.state.messages, message], users });
     });
 
-    Socket.on('user-disconnected', username => {
+    Socket.on('user-disconnected', (socket, couch) => {
+      const username = couch[socket];
       const message = `${username} has left the Couch`;
-      this.setState({ messages: [...this.state.messages, message] });
+      delete couch[socket];
+      const updatedUsers = Object.values(couch);
+      this.setState({
+        messages: [...this.state.messages, message],
+        users: updatedUsers
+      });
     });
 
     Socket.on('receive-message', msgObj => {
@@ -32,6 +41,7 @@ export default class Chat extends React.Component {
         localStorage.couchId
       );
       this.setState({ message: '' });
+      window.scrollTo(0, document.body.scrollHeight);
     };
   }
 
@@ -45,24 +55,43 @@ export default class Chat extends React.Component {
     Socket.emit('disconnect');
   }
 
+  copiedToClipboard() {
+    alert('Copied Couch ID to clipboard!');
+  }
+
   render() {
+    const users = this.state.users.join(', ');
     return (
       <div id="outer-container">
         <div id="chat-container">
-          <h3>Share this Couch ID: {localStorage.couchId}</h3>
+          <div id="chat-header">
+            <h3>
+              Share this Couch ID:
+              <CopyToClipboard text={localStorage.couchId}>
+                <button
+                  onClick={this.copiedToClipboard}
+                  id="copy-to-clipboard"
+                  variant="outline-primary"
+                >
+                  {localStorage.couchId}
+                </button>
+              </CopyToClipboard>
+            </h3>
+            <p>Current Seatmates: {users}</p>
+          </div>
           <div>
             <ul id="messages">
-                {this.state.messages.map(message => {
-                  if (message.username) {
-                    return (
-                      <li>
-                        {message.username}: {message.message}
-                      </li>
-                    );
-                  } else {
-                    return <li>{message}</li>;
-                  }
-                })}
+              {this.state.messages.map(message => {
+                if (message.username) {
+                  return (
+                    <li>
+                      {message.username}: {message.message}
+                    </li>
+                  );
+                } else {
+                  return <li>{message}</li>;
+                }
+              })}
             </ul>
           </div>
           <form id="chat-form" action="">
