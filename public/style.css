@@ -98,9 +98,11 @@ button {
   margin: 0.5;
   margin-top: 75px;
   margin-bottom: 100px;
+  height: 50%;
 }
 #messages li {
   padding: 5px 10px;
+  overflow: auto;
 }
 #messages li:nth-child(odd) {
   background: #3c3c3c;
