@@ -9,7 +9,8 @@ export default class HomePage extends Component {
     this.state = {
       showJoin: false,
       showStart: false,
-      showInstructions: false
+      showInstructions: false,
+      showHelpButton: true
     };
     this.toggleJoinPopup = this.toggleJoinPopup.bind(this);
     this.toggleStartPopup = this.toggleStartPopup.bind(this);
@@ -19,6 +20,7 @@ export default class HomePage extends Component {
   toggleJoinPopup() {
     this.setState({
       showStart: false,
+      // showHelpButton: false,
       showJoin: !this.state.showJoin
     });
   }
@@ -26,6 +28,7 @@ export default class HomePage extends Component {
   toggleStartPopup() {
     this.setState({
       showJoin: false,
+      // showHelpButton: false,
       showStart: !this.state.showStart
     });
   }
@@ -56,9 +59,13 @@ export default class HomePage extends Component {
         {this.state.showJoin ? <JoinPopup /> : null}
         {this.state.showStart ? <StartPopup /> : null}
         <div id="help-button-container">
-          <button id="help-button" onClick={this.toggleInstructions}>
-            I need more help!
-          </button>
+          <div id="help-button-wrapper">
+            {!this.state.showJoin && !this.state.showStart ? (
+              <button id="help-button" onClick={this.toggleInstructions}>
+                More Help
+              </button>
+            ) : null}
+          </div>
           {this.state.showInstructions ? <Instructions /> : null}
         </div>
       </div>
