@@ -1,5 +1,6 @@
 import React from 'react';
 import Socket from './Socket';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 export default class Chat extends React.Component {
   constructor(props) {
@@ -9,6 +10,7 @@ export default class Chat extends React.Component {
       messages: [],
       users: []
     };
+    this.copiedToClipboard = this.copiedToClipboard.bind(this);
 
     Socket.on('user-connected', (username, users) => {
       const message = `${username} joined the Couch`;
@@ -53,13 +55,28 @@ export default class Chat extends React.Component {
     Socket.emit('disconnect');
   }
 
+  copiedToClipboard() {
+    alert('Copied Couch ID to clipboard!');
+  }
+
   render() {
     const users = this.state.users.join(', ');
     return (
       <div id="outer-container">
         <div id="chat-container">
           <div id="chat-header">
-            <h3>Share this Couch ID: {localStorage.couchId}</h3>
+            <h3>
+              Share this Couch ID:
+              <CopyToClipboard text={localStorage.couchId}>
+                <button
+                  onClick={this.copiedToClipboard}
+                  id="copy-to-clipboard"
+                  variant="outline-primary"
+                >
+                  {localStorage.couchId}
+                </button>
+              </CopyToClipboard>
+            </h3>
             <p>Current Seatmates: {users}</p>
           </div>
           <div>

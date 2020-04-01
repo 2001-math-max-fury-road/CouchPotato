@@ -34,9 +34,18 @@ body {
   font-size: 18px;
 }
 #intro p {
-  padding: 0.5em;
+  padding: 0.7em;
 }
-#help-button-container {
+#copy-to-clipboard {
+  width: 15%;
+  height: 10%;
+  background: #3dbb3d;
+  border: black;
+  margin: 0.5em;
+  padding: 2px;
+}
+
+  #help-button-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -70,7 +79,7 @@ body {
   color: #c8c8c8;
 }
 #chat-header {
-  padding: 1em;
+  padding: 0.3em;
   text-align: center;
   position: fixed;
   top: 0;
