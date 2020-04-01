@@ -1,6 +1,7 @@
 import React from 'react';
 import Socket from './Socket';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import Notifications, { notify } from 'react-notify-toast';
 
 export default class Chat extends React.Component {
   constructor(props) {
@@ -29,7 +30,8 @@ export default class Chat extends React.Component {
     });
 
     Socket.on('receive-message', msgObj => {
-      this.setState({ messages: [...this.state.messages, msgObj] });
+      this.setState({ messages: [...this.state.messages, msgObj] });    
+      window.scrollTo(0, document.body.scrollHeight);
     });
 
     this.sendMessage = event => {
@@ -56,17 +58,24 @@ export default class Chat extends React.Component {
   }
 
   copiedToClipboard() {
-    alert('Copied Couch ID to clipboard!');
+    const alertColor = { background: '#119da4', text: '#c8c8c8' };
+    notify.show(
+      'Copied Couch ID to clipboard! Now share it with your friends',
+      'custom',
+      5000,
+      alertColor
+    );
   }
 
   render() {
     const users = this.state.users.join(', ');
     return (
       <div id="outer-container">
+        <Notifications />
         <div id="chat-container">
           <div id="chat-header">
             <h3>
-              Share this Couch ID:
+              Copy and Share this Couch ID:
               <CopyToClipboard text={localStorage.couchId}>
                 <button
                   onClick={this.copiedToClipboard}

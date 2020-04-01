@@ -54,12 +54,13 @@ export default class JoinPopup extends React.Component {
             <input name="username" placeholder="Your name" />
             <button
               type="submit"
+              id="couch-submit"
               disabled={
                 !this.checkCouchNum(this.state.couchId) || !this.state.username
               }
               onClick={this.joinCouch}
             >
-              Join Couch
+              Join!
             </button>
           </form>
         </div>
