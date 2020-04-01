@@ -48,11 +48,7 @@ export default class HomePage extends Component {
             they sent you!
           </p>
           <p>Otherwise, click “Start a Couch” to get the party started!</p>
-          {/* <div id="help-button-container">
-            <button id="help-button" onClick={this.toggleInstructions}>I need more help!</button>
-          </div> */}
         </div>
-        {/* {this.state.showInstructions ? <Instructions /> : null} */}
         <div id="button-container">
           <button onClick={this.toggleJoinPopup}>Join a Couch</button>
           <button onClick={this.toggleStartPopup}>Start a New Couch</button>
