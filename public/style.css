@@ -34,7 +34,7 @@ body {
   font-size: 18px;
 }
 #intro p {
-  padding: 0.5em;
+  padding: 0.7em;
 }
 #button-container {
   display: flex;
@@ -47,7 +47,7 @@ body {
   color: #c8c8c8;
 }
 #chat-header {
-  padding: 1em;
+  padding: .3em;
   text-align: center;
   position: fixed;
   top: 0;
@@ -98,7 +98,6 @@ button {
   margin: 0.5;
   margin-top: 75px;
   margin-bottom: 100px;
-  height: 50%;
 }
 #messages li {
   padding: 5px 10px;
@@ -138,6 +137,14 @@ button {
   border: black;
   margin: 2em;
   padding: 10px;
+}
+#copy-to-clipboard { 
+  width: 15%;
+  height: 10%;
+  background: #3dbb3d;
+  border: black;
+  margin: .5em;
+  padding: 2px;
 }
 .warning {
   padding: 0 0.5em;
