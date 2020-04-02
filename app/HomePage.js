@@ -43,7 +43,7 @@ export default class HomePage extends Component {
     return (
       <div id="homepage">
         <div id="home-h1-container">
-          <h1>Hey Couch Potato!</h1>
+          <h1>Hey, Couch Potato!</h1>
         </div>
         <div id="intro">
           <p>

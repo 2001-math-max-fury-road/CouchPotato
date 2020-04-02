@@ -5,9 +5,9 @@ function Instructions() {
     <div id="instructions">
       <h2>Starting a Couch</h2>
       <p>
-        Click "Start a New Couch". Input your name, and on the next page you
+        Click "Start a New Couch." Input your name, and on the next page you
         will see a Couch ID. Click on the Couch ID to copy it to your clipboard,
-        then share it with your friends and they can join your Couch.
+        then share it with your friends so they can join your Couch.
       </p>
       <h2>Joining a Couch</h2>
       <p>

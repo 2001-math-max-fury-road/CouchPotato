@@ -2,6 +2,20 @@
 
 Couch Potato is a Chrome extension allowing multiple users to remotely and simultaneously stream video content, compatible with the Hulu web player.
 
+## Using the Extension
+
+Once you and your friends have installed the Couch Potato extension, begin watching a show or movie on Hulu, then click on the popcorn icon in your Chrome menu bar and then the "Start a Couch Party" button that pops up.
+
+![](demo-screenshots/extension-button.png)
+
+To start a Couch, click "Start a New Couch," enter your name, and click "Start." If your friend has already started a Couch, click "Join a Couch," and enter the Couch ID they gave you along with your name, and click "Join."
+
+![](demo-screenshots/welcome-screen.png)
+
+You're now on the Couch! Look at the top of the chat to see who else is here, or click on the green Couch ID to copy and share the 15-digit number with your friends. Now, get to binge-watching!
+
+![](demo-screenshots/chat-room.png)
+
 ## Getting Started
 
 In order to test this program on a local machine, you will have to update references to 'couch-potato-extension.herokuapp.com' with your local host (e.g. 'http://localhost:3000').
