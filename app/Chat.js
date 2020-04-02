@@ -2,6 +2,11 @@ import React from "react";
 import Socket from "./Socket";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import Notifications, { notify } from "react-notify-toast";
+<<<<<<< HEAD
+=======
+import "../public/emoji-mart.css";
+import { Picker } from "emoji-mart";
+>>>>>>> 2d577d35e6e6bc78695e4ad820aa3aacabd8ab54
 
 export default class Chat extends React.Component {
   constructor(props) {
@@ -9,9 +14,13 @@ export default class Chat extends React.Component {
     this.state = {
       message: "",
       messages: [],
-      users: []
+      users: [],
+      emoji: ""
     };
     this.copiedToClipboard = this.copiedToClipboard.bind(this);
+    this.showEmojis = this.showEmojis.bind(this);
+    this.closeMenu = this.closeMenu.bind(this);
+    this.addEmoji = this.addEmoji.bind(this);
 
     Socket.on("user-connected", (username, users) => {
       const message = `${username} joined the Couch`;
@@ -84,11 +93,38 @@ export default class Chat extends React.Component {
   copiedToClipboard() {
     const alertColor = { background: "#119da4", text: "#c8c8c8" };
     notify.show(
-      'Copied Couch ID to clipboard! Now share it with your friends.',
-      'custom',
+      "Copied Couch ID to clipboard! Now share it with your friends.",
+      "custom",
       5000,
       alertColor
     );
+  }
+
+  showEmojis(e) {
+    this.setState(
+      {
+        showEmojis: true
+      },
+      () => document.addEventListener("click", this.closeMenu)
+    );
+  }
+
+  closeMenu(e) {
+    if (this.emojiPicker !== null && !this.emojiPicker.contains(e.target)) {
+      this.setState(
+        {
+          showEmojis: false
+        },
+        () => document.removeEventListener("click", this.closeMenu)
+      );
+    }
+  }
+
+  addEmoji(e) {
+    let emoji = e.native;
+    this.setState({
+      message: this.state.message + emoji
+    });
   }
 
   render() {
@@ -133,6 +169,22 @@ export default class Chat extends React.Component {
               })}
             </ul>
           </div>
+          <div id="flex-container">
+            <div id="emoji">
+              {this.state.showEmojis ? (
+                <span id="emoji-span" ref={el => (this.emojiPicker = el)}>
+                  <Picker onSelect={this.addEmoji} emojiTooltip={true} />
+                </span>
+              ) : (
+                <img
+                  id="emoji-img"
+                  src={
+                    "https://cdn.shopify.com/s/files/1/1061/1924/products/Emoji_Icon_-_Cowboy_emoji_large.png?v=1571606089"
+                  }
+                  onClick={this.showEmojis}
+                ></img>
+              )}
+            </div>
           <form id="chat-form" action="">
             <input
               type="text"
@@ -140,17 +192,18 @@ export default class Chat extends React.Component {
               value={this.state.message}
               onChange={ev => this.setState({ message: ev.target.value })}
               className="form-control"
-            />
+              />
             <button onClick={this.sendMessage}>Send</button>
             <img
               src={
-                'https://images.vexels.com/media/users/3/143358/isolated/preview/0fb2d717f3362970778533776849ec50-tequila-shot-icon-by-vexels.png'
+                "https://images.vexels.com/media/users/3/143358/isolated/preview/0fb2d717f3362970778533776849ec50-tequila-shot-icon-by-vexels.png"
               }
               onClick={this.sendShot}
-            ></img>
+              ></img>
           </form>
-        </div>
-      </div>
+          </div>
+          </div>
+    </div>
     );
   }
 }
