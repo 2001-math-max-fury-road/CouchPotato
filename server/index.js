@@ -33,8 +33,7 @@ app.post("/api/", (req, res) => {
 
 // add event listener to play/pause, send request to that route,
 app.get("/api/play-pause", (req, res) => {
-  console.log("Did you hit the backend?");
-  const message = "Is anyone out there?";
+  const message = "Someone played/paused their video!";
   io.emit("player", message);
   res.sendStatus(200);
 });
@@ -51,10 +50,6 @@ app.get("*", (req, res) => {
 server.listen(port, function() {
   console.log(`listening on *: ${port}`);
 });
-
-// Potential solution to get Hulu socket to join this backend socket
-// Apparently can route clients based on cookies in socket io?? (sticky load balancing in socket io documentation)
-// io.set['transports', ['websocket']]
 
 io.on("connection", socket => {
   socket.on("new-user", (couch, name) => {

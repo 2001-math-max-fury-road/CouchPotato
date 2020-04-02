@@ -35,6 +35,7 @@ export default class Chat extends React.Component {
     });
 
     Socket.on("player", message => {
+      parent.postMessage("play-pause")
       Socket.emit(
         "send-chat-message",
         message,
