@@ -106,6 +106,24 @@ img:hover {
 #chat-container {
   color: #c8c8c8;
 }
+#flex-container { 
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column; 
+  flex-grow: 1; 
+}
+#emoji { 
+  padding: 1em;
+}
+#emoji-img { 
+  width: 34px;
+  height: 34px;
+  margin-right: 0;
+  margin-left: 1em;
+  align-self: center;
+}
 #chat-header {
   padding: 0.3em;
   text-align: center;
@@ -119,17 +137,17 @@ img:hover {
 }
 #chat-form {
   background: #000;
-  padding: 3px;
+  padding: 1px;
   position: fixed;
   bottom: 0;
-  width: 100%;
+  width: 95%;
+  margin-left: 5em;
   display: flex;
 }
 #chat-form input {
   border: 1pt solid #3c3c3c;
   padding: 10px;
   width: 90%;
-  margin-right: 0.5%;
   background-color: #1e1e1e;
   color: #c8c8c8;
   margin: 1.5em;
@@ -223,3 +241,4 @@ img {
   align-self: center;
   margin-right: 1em;
 }
+
