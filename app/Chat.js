@@ -35,6 +35,7 @@ export default class Chat extends React.Component {
     });
 
     Socket.on("player", message => {
+      // add username to postMessage? so that Hulu window knows not to press the initiating person's play/pause button
       parent.postMessage("play-pause")
       Socket.emit(
         "send-chat-message",
