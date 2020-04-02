@@ -75,7 +75,7 @@
 .emoji-mart-anchors i {
   display: inline-block;
   width: 100%;
-  max-width: 22px;
+  max-width: 100px;
 }
 
 .emoji-mart-anchors svg,
