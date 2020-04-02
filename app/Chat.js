@@ -182,17 +182,10 @@ export default class Chat extends React.Component {
             <button onClick={this.sendMessage}>Send</button>
             <img
               src={
-<<<<<<< HEAD
                 "https://images.vexels.com/media/users/3/143358/isolated/preview/0fb2d717f3362970778533776849ec50-tequila-shot-icon-by-vexels.png"
               }
               onClick={this.sendShot}
               ></img>
-=======
-                'https://images.vexels.com/media/users/3/143358/isolated/preview/0fb2d717f3362970778533776849ec50-tequila-shot-icon-by-vexels.png'
-              }
-              onClick={this.sendShot}
-            ></img>
->>>>>>> 5946898dcdc4bfd48abc7534097ee55e7fccca63
           </form>
           </div>
           </div>
