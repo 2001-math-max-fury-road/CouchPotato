@@ -42,6 +42,10 @@ server.listen(port, function() {
   console.log(`listening on *: ${port}`);
 });
 
+// Potential solution to get Hulu socket to join this backend socket
+// Apparently can route clients based on cookies in socket io?? (sticky load balancing in socket io documentation)
+// io.set['transports', ['websocket']]
+
 io.on("connection", socket => {
   socket.on("new-user", (couch, name) => {
     const error = "Not the right Couch";
