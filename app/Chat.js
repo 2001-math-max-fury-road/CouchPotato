@@ -46,6 +46,7 @@ export default class Chat extends React.Component {
         "send-chat-message",
         this.state.message,
         localStorage.username,
+        localStorage.avatar,
         localStorage.couchId
       );
       this.setState({ message: "" });
@@ -55,9 +56,10 @@ export default class Chat extends React.Component {
     this.sendShot = event => {
       event.preventDefault();
       Socket.emit(
-        "send-shot",
-        "Everyone drink!",
+        'send-shot',
+        'Everyone drink!',
         localStorage.username,
+        localStorage.avatar,
         localStorage.couchId
       );
       window.scrollTo(0, document.body.scrollHeight);
@@ -141,7 +143,10 @@ export default class Chat extends React.Component {
                 if (message.username) {
                   return (
                     <li>
-                      {message.username}: {message.message}
+                      <img src={message.avatar} />{' '}
+                      <div id="message-content">
+                        {message.username}: {message.message}{' '}
+                      </div>
                     </li>
                   );
                 } else {
@@ -149,7 +154,7 @@ export default class Chat extends React.Component {
                 }
               })}
             </ul>
-          </div>  
+          </div>
           <div id="flex-container">
             <div id="emoji">
               {this.state.showEmojis ? (
@@ -183,7 +188,7 @@ export default class Chat extends React.Component {
               ></img>
           </form>
           </div>
-          </div>       
+          </div>
     </div>
     );
   }
