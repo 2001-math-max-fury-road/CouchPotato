@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import images from '../public/avatars/images';
 
 export default class StartPopup extends React.Component {
   constructor() {
@@ -19,8 +20,8 @@ export default class StartPopup extends React.Component {
     this.setState({ couchId: data.couchId });
     localStorage.setItem('couchId', this.state.couchId);
     localStorage.setItem('username', this.state.username);
-    // location.replace(`http://localhost:3000/${this.state.couchId}`);
-    location.replace(`http://couch-potato-extension.herokuapp.com/${this.state.couchId}`);
+    location.replace(`http://localhost:3000/${this.state.couchId}`);
+    // location.replace(`http://couch-potato-extension.herokuapp.com/${this.state.couchId}`);
   }
 
   handleChange(event) {
@@ -28,6 +29,7 @@ export default class StartPopup extends React.Component {
   }
 
   render() {
+    console.log('updated');
     return (
       <div className="popup">
         <div className="popup\_inner">
@@ -38,6 +40,16 @@ export default class StartPopup extends React.Component {
               )}
             </label>
             <input name="username" placeholder="Your name" />
+            <div id="avatar-options-container">
+              <p>
+                <strong>Choose an avatar:</strong>
+              </p>
+              <div id="avatar-options">
+                {images.map(({ id, src, title }) => (
+                  <img key={id} src={src} />
+                ))}
+              </div>
+            </div>
             <button
               type="submit"
               id="couch-submit"

@@ -44,6 +44,7 @@ body {
   margin: 0.5em;
   padding: 2px;
 }
+
   #help-button-container {
   display: flex;
   flex-direction: column;
@@ -77,6 +78,14 @@ body {
 #button-container {
   display: flex;
   justify-content: center;
+}
+#avatar-options-container {
+  color: #c8c8c8;
+  /* display: flex; */
+}
+#avatar-options {
+  display: flex;
+  justify-content: space-evenly;
 }
 #outer-container {
   background-color: #000;
