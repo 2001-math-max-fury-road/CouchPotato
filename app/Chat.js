@@ -1,24 +1,24 @@
-import React from 'react';
-import Socket from './Socket';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
-import Notifications, { notify } from 'react-notify-toast';
+import React from "react";
+import Socket from "./Socket";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import Notifications, { notify } from "react-notify-toast";
 
 export default class Chat extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      message: '',
+      message: "",
       messages: [],
       users: []
     };
     this.copiedToClipboard = this.copiedToClipboard.bind(this);
 
-    Socket.on('user-connected', (username, users) => {
+    Socket.on("user-connected", (username, users) => {
       const message = `${username} joined the Couch`;
       this.setState({ messages: [...this.state.messages, message], users });
     });
 
-    Socket.on('user-disconnected', (socket, couch) => {
+    Socket.on("user-disconnected", (socket, couch) => {
       const username = couch[socket];
       const message = `${username} has left the Couch`;
       delete couch[socket];
@@ -29,46 +29,55 @@ export default class Chat extends React.Component {
       });
     });
 
-    Socket.on('receive-message', msgObj => {
+    Socket.on("receive-message", msgObj => {
       this.setState({ messages: [...this.state.messages, msgObj] });
       window.scrollTo(0, document.body.scrollHeight);
+    });
+
+    Socket.on("player", message => {
+      Socket.emit(
+        "send-chat-message",
+        message,
+        localStorage.username,
+        localStorage.couchId
+      );
     });
 
     this.sendMessage = event => {
       event.preventDefault();
       Socket.emit(
-        'send-chat-message',
+        "send-chat-message",
         this.state.message,
         localStorage.username,
         localStorage.couchId
       );
-      this.setState({ message: '' });
+      this.setState({ message: "" });
       window.scrollTo(0, document.body.scrollHeight);
     };
   }
 
   componentDidMount() {
-    const username = localStorage.getItem('username');
-    const couchId = localStorage.getItem('couchId');
-    Socket.emit('new-user', couchId, username);
+    const username = localStorage.getItem("username");
+    const couchId = localStorage.getItem("couchId");
+    Socket.emit("new-user", couchId, username);
   }
 
   componentWillUnmount() {
-    Socket.emit('disconnect');
+    Socket.emit("disconnect");
   }
 
   copiedToClipboard() {
-    const alertColor = { background: '#119da4', text: '#c8c8c8' };
+    const alertColor = { background: "#119da4", text: "#c8c8c8" };
     notify.show(
-      'Copied Couch ID to clipboard! Now share it with your friends',
-      'custom',
+      "Copied Couch ID to clipboard! Now share it with your friends",
+      "custom",
       5000,
       alertColor
     );
   }
 
   render() {
-    const users = this.state.users.join(', ');
+    const users = this.state.users.join(", ");
     return (
       <div id="outer-container">
         <Notifications />

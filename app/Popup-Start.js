@@ -1,13 +1,13 @@
-import React from 'react';
-import axios from 'axios';
+import React from "react";
+import axios from "axios";
 
 export default class StartPopup extends React.Component {
   constructor() {
     super();
     this.state = {
-      couchId: '',
-      username: '',
-      usernameWarning: 'Name cannot be empty'
+      couchId: "",
+      username: "",
+      usernameWarning: "Name cannot be empty"
     };
     this.startCouch = this.startCouch.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -15,12 +15,12 @@ export default class StartPopup extends React.Component {
 
   async startCouch(event) {
     event.preventDefault();
-    const { data } = await axios.post('/api/');
+    const { data } = await axios.post("/api/");
     this.setState({ couchId: data.couchId });
-    localStorage.setItem('couchId', this.state.couchId);
-    localStorage.setItem('username', this.state.username);
-    // location.replace(`http://localhost:3000/${this.state.couchId}`);
-    location.replace(`http://couch-potato-extension.herokuapp.com/${this.state.couchId}`);
+    localStorage.setItem("couchId", this.state.couchId);
+    localStorage.setItem("username", this.state.username);
+    location.replace(`http://localhost:3000/${this.state.couchId}`);
+    //location.replace(`http://couch-potato-extension.herokuapp.com/${this.state.couchId}`);
   }
 
   handleChange(event) {
