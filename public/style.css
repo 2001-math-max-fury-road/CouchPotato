@@ -201,3 +201,9 @@ button {
   color: white;
   margin-left: 1em;
 }
+img { 
+  width: 34px;
+  height: 34px;
+  align-self: center;
+  margin-right: 1em;
+}
