@@ -56,6 +56,12 @@ io.on("connection", socket => {
       username: username
     });
   });
+  socket.on("send-shot", (message, username, couch) => { 
+    io.in(couch).emit("receive-message", {
+      message: message, 
+      username: username
+  })
+});
   socket.on("disconnect", () => {
     getUserCouches(socket).forEach(couch => {
       socket
