@@ -44,6 +44,7 @@ body {
   margin: 0.5em;
   padding: 2px;
 }
+
   #help-button-container {
   display: flex;
   flex-direction: column;
@@ -77,6 +78,27 @@ body {
 #button-container {
   display: flex;
   justify-content: center;
+}
+#avatar-options-container {
+  color: #c8c8c8;
+}
+#avatar-options {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+#avatar-options-container p {
+  padding: 1em;
+}
+#avatar {
+  width: 100;
+  height: 100;
+}
+img:hover {
+  border: 1.5pt solid #119da4;
+}
+#avatar-button:active {
+  border: 2pt solid #119da4;
 }
 #outer-container {
   background-color: #000;
@@ -145,10 +167,16 @@ button {
 #messages li {
   padding: 5px 10px;
   overflow: auto;
+  display: flex;
 }
 #messages li:nth-child(odd) {
   background: #3c3c3c;
   color: #c8c8c8;
+  display: flex;
+}
+#message-content {
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 .popup {
   width: 100%;
@@ -189,7 +217,7 @@ button {
   color: white;
   margin-left: 1em;
 }
-img { 
+img {
   width: 34px;
   height: 34px;
   align-self: center;

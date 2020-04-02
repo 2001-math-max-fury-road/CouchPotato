@@ -1,4 +1,5 @@
 import React from 'react';
+import images from '../public/images';
 
 export default class JoinPopup extends React.Component {
   constructor() {
@@ -6,11 +7,13 @@ export default class JoinPopup extends React.Component {
     this.state = {
       couchId: '',
       username: '',
+      avatar: '',
       couchWarning: 'Please enter a valid Couch ID',
       usernameWarning: 'Name cannot be empty'
     };
 
     this.joinCouch = this.joinCouch.bind(this);
+    this.chooseAvatar = this.chooseAvatar.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.checkCouchNum = this.checkCouchNum.bind(this);
   }
@@ -21,6 +24,13 @@ export default class JoinPopup extends React.Component {
     localStorage.setItem('username', this.state.username);
     // location.replace(`http://localhost:3000/${this.state.couchId}`);
     location.replace(`http://couch-potato-extension.herokuapp.com/${this.state.couchId}`);
+  }
+
+  chooseAvatar(event) {
+    this.setState({
+      avatar: event.target.src
+    });
+    localStorage.setItem('avatar', this.state.avatar);
   }
 
   handleChange(event) {
@@ -52,6 +62,22 @@ export default class JoinPopup extends React.Component {
               )}
             </label>
             <input name="username" placeholder="Your name" />
+            <div id="avatar-options-container">
+              <p>
+                <strong>Choose an avatar:</strong>
+              </p>
+              <div id="avatar-options">
+                {images.map(({ id, src, title }) => (
+                  <img
+                    //add classname? to allow pseudo class for :focus
+                    key={id}
+                    src={src}
+                    alt={title}
+                    onClick={this.chooseAvatar}
+                  />
+                ))}
+              </div>
+            </div>
             <button
               type="submit"
               id="couch-submit"
