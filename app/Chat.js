@@ -30,7 +30,7 @@ export default class Chat extends React.Component {
     });
 
     Socket.on('receive-message', msgObj => {
-      this.setState({ messages: [...this.state.messages, msgObj] });    
+      this.setState({ messages: [...this.state.messages, msgObj] });
       window.scrollTo(0, document.body.scrollHeight);
     });
 
@@ -74,19 +74,22 @@ export default class Chat extends React.Component {
         <Notifications />
         <div id="chat-container">
           <div id="chat-header">
-            <h3>
-              Copy and Share this Couch ID:
-              <CopyToClipboard text={localStorage.couchId}>
+            <CopyToClipboard onCopy={this.copiedToClipboard}>
+              <h3>
+                Click to Copy and Share this Couch ID:
                 <button
+                  text={localStorage.couchId}
                   onClick={this.copiedToClipboard}
                   id="copy-to-clipboard"
                   variant="outline-primary"
                 >
                   {localStorage.couchId}
                 </button>
-              </CopyToClipboard>
-            </h3>
-            <p>Current Seatmates: {users}</p>
+              </h3>
+            </CopyToClipboard>
+            <p>
+              <strong>Current Seatmates:</strong> {users}
+            </p>
           </div>
           <div>
             <ul id="messages">

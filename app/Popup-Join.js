@@ -7,7 +7,7 @@ export default class JoinPopup extends React.Component {
       couchId: '',
       username: '',
       couchWarning: 'Please enter a valid Couch ID',
-      usernameWarning: 'Username cannot be empty'
+      usernameWarning: 'Name cannot be empty'
     };
 
     this.joinCouch = this.joinCouch.bind(this);

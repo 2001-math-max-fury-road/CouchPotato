@@ -7,7 +7,7 @@ export default class StartPopup extends React.Component {
     this.state = {
       couchId: '',
       username: '',
-      usernameWarning: 'Username cannot be empty'
+      usernameWarning: 'Name cannot be empty'
     };
     this.startCouch = this.startCouch.bind(this);
     this.handleChange = this.handleChange.bind(this);
