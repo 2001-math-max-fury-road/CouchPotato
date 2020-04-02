@@ -9,7 +9,7 @@ export default class Chat extends React.Component {
     this.state = {
       message: '',
       messages: [],
-      users: []
+      users: [], 
     };
     this.copiedToClipboard = this.copiedToClipboard.bind(this);
 
@@ -45,6 +45,16 @@ export default class Chat extends React.Component {
       this.setState({ message: '' });
       window.scrollTo(0, document.body.scrollHeight);
     };
+    
+    this.sendShot = event => { 
+      event.preventDefault();
+      Socket.emit('send-shot', 
+      "Everyone drink!", 
+      localStorage.username,
+      localStorage.couchId
+      )
+      window.scrollTo(0, document.body.scrollHeight);
+    }
   }
 
   componentDidMount() {
@@ -60,7 +70,7 @@ export default class Chat extends React.Component {
   copiedToClipboard() {
     const alertColor = { background: '#119da4', text: '#c8c8c8' };
     notify.show(
-      'Copied Couch ID to clipboard! Now share it with your friends',
+      'Copied Couch ID to clipboard! Now share it with your friends.',
       'custom',
       5000,
       alertColor
@@ -88,7 +98,7 @@ export default class Chat extends React.Component {
               </h3>
             </CopyToClipboard>
             <p>
-              <strong>Current Seatmates:</strong> {users}
+              <strong>Who's on the Couch:</strong> {users}
             </p>
           </div>
           <div>
@@ -115,6 +125,7 @@ export default class Chat extends React.Component {
               className="form-control"
             />
             <button onClick={this.sendMessage}>Send</button>
+            <img src={'https://images.vexels.com/media/users/3/143358/isolated/preview/0fb2d717f3362970778533776849ec50-tequila-shot-icon-by-vexels.png'} onClick={this.sendShot}></img>
           </form>
         </div>
       </div>

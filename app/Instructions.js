@@ -15,6 +15,12 @@ function Instructions() {
         then input your name and that Couch ID to be redirected to your friend's
         Couch.
       </p>
+      <h2>Once you've joined a Couch</h2>
+      <p>
+        Chat to your friends while watching the same shows and movies! Play a 
+        drinking game while watching by using the tequila shot emoji in the right-
+        hand corner of the chat box. 
+      </p>
     </div>
   );
 }
