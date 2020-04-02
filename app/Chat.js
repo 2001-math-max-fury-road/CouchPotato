@@ -11,8 +11,7 @@ export default class Chat extends React.Component {
     this.state = {
       message: "",
       messages: [],
-      users: [],
-      emoji: ""
+      users: []
     };
     this.copiedToClipboard = this.copiedToClipboard.bind(this);
     this.showEmojis = this.showEmojis.bind(this);
@@ -46,6 +45,7 @@ export default class Chat extends React.Component {
         "send-chat-message",
         this.state.message,
         localStorage.username,
+        localStorage.avatar,
         localStorage.couchId
       );
       this.setState({ message: "" });
@@ -55,9 +55,10 @@ export default class Chat extends React.Component {
     this.sendShot = event => {
       event.preventDefault();
       Socket.emit(
-        "send-shot",
-        "Everyone drink!",
+        'send-shot',
+        'Everyone drink!',
         localStorage.username,
+        localStorage.avatar,
         localStorage.couchId
       );
       window.scrollTo(0, document.body.scrollHeight);
@@ -141,7 +142,10 @@ export default class Chat extends React.Component {
                 if (message.username) {
                   return (
                     <li>
-                      {message.username}: {message.message}
+                      <img src={message.avatar} />{' '}
+                      <div id="message-content">
+                        {message.username}: {message.message}{' '}
+                      </div>
                     </li>
                   );
                 } else {
@@ -177,10 +181,10 @@ export default class Chat extends React.Component {
             <button onClick={this.sendMessage}>Send</button>
             <img
               src={
-                "https://images.vexels.com/media/users/3/143358/isolated/preview/0fb2d717f3362970778533776849ec50-tequila-shot-icon-by-vexels.png"
+                'https://images.vexels.com/media/users/3/143358/isolated/preview/0fb2d717f3362970778533776849ec50-tequila-shot-icon-by-vexels.png'
               }
               onClick={this.sendShot}
-              ></img>
+            ></img>
           </form>
           </div>
           </div>       
