@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import images from '../public/avatars/images';
+import images from '../public/images';
 
 export default class StartPopup extends React.Component {
   constructor() {
@@ -8,7 +8,8 @@ export default class StartPopup extends React.Component {
     this.state = {
       couchId: '',
       username: '',
-      avatar: '',
+      avatar:
+        'https://pbs.twimg.com/profile_images/441409774555394048/pYFftHBs_400x400.jpeg',
       usernameWarning: 'Name cannot be empty'
     };
     this.startCouch = this.startCouch.bind(this);
@@ -22,23 +23,18 @@ export default class StartPopup extends React.Component {
     this.setState({ couchId: data.couchId });
     localStorage.setItem('couchId', this.state.couchId);
     localStorage.setItem('username', this.state.username);
-    location.replace(`http://localhost:3000/${this.state.couchId}`);
-    // location.replace(`http://couch-potato-extension.herokuapp.com/${this.state.couchId}`);
+    localStorage.setItem('avatar', this.state.avatar);
+    // location.replace(`http://localhost:3000/${this.state.couchId}`);
+    location.replace(
+      `http://couch-potato-extension.herokuapp.com/${this.state.couchId}`
+    );
   }
 
-  chooseAvatar(event) {
+  async chooseAvatar(event) {
     event.preventDefault();
     this.setState({
-      // avatar: {
-      //   key: event.target.key,
-      //   src: event.target.src,
-      //   alt: event.target.alt
-      // }
       avatar: event.target.src
     });
-    localStorage.setItem('avatar', this.state.avatar);
-    console.log('avatar chosen!');
-    console.log(localStorage);
   }
 
   handleChange(event) {
@@ -62,12 +58,15 @@ export default class StartPopup extends React.Component {
               </p>
               <div id="avatar-options">
                 {images.map(({ id, src, title }) => (
-                  <img
-                    key={id}
-                    src={src}
-                    alt={title}
-                    onClick={this.chooseAvatar}
-                  />
+                  <a id="avatar-button">
+                    <img
+                      key={id}
+                      id="avatar"
+                      src={src}
+                      alt={title}
+                      onClick={this.chooseAvatar}
+                    />
+                  </a>
                 ))}
               </div>
             </div>
