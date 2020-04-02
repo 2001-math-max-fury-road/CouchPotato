@@ -87,6 +87,9 @@ body {
   display: flex;
   justify-content: space-evenly;
 }
+#avatar-options img:focus {
+  border: 1pt solid yellow;
+}
 #outer-container {
   background-color: #000;
 }

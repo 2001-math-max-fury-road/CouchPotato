@@ -8,9 +8,11 @@ export default class StartPopup extends React.Component {
     this.state = {
       couchId: '',
       username: '',
+      avatar: '',
       usernameWarning: 'Name cannot be empty'
     };
     this.startCouch = this.startCouch.bind(this);
+    this.chooseAvatar = this.chooseAvatar.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -24,12 +26,26 @@ export default class StartPopup extends React.Component {
     // location.replace(`http://couch-potato-extension.herokuapp.com/${this.state.couchId}`);
   }
 
+  chooseAvatar(event) {
+    event.preventDefault();
+    this.setState({
+      // avatar: {
+      //   key: event.target.key,
+      //   src: event.target.src,
+      //   alt: event.target.alt
+      // }
+      avatar: event.target.src
+    });
+    localStorage.setItem('avatar', this.state.avatar);
+    console.log('avatar chosen!');
+    console.log(localStorage);
+  }
+
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
 
   render() {
-    console.log('updated');
     return (
       <div className="popup">
         <div className="popup\_inner">
@@ -46,7 +62,12 @@ export default class StartPopup extends React.Component {
               </p>
               <div id="avatar-options">
                 {images.map(({ id, src, title }) => (
-                  <img key={id} src={src} />
+                  <img
+                    key={id}
+                    src={src}
+                    alt={title}
+                    onClick={this.chooseAvatar}
+                  />
                 ))}
               </div>
             </div>
