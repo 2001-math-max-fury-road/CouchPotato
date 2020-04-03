@@ -150,8 +150,9 @@ export default class Chat extends React.Component {
             </p>
           </div>
           <div id="popup-chat">
-              <Popup modal trigger={<img src={localStorage.avatar} showModal={this.state.showModal}></img>}>
-                {close => <UserForm username={localStorage.username} avatar={localStorage.avatar} />}
+              <Popup modal trigger={open => ( 
+              <img src={localStorage.avatar} ></img> )} closeOnDocumentClick>
+                 <UserForm  username={localStorage.username} avatar={localStorage.avatar} />
               </Popup>
             </div>
           <div>

@@ -256,31 +256,47 @@ img {
 }
 #edit-user-form { 
   background-color: white;
-  align-self: center;
-}
-.header { 
-  width: 100%;
-  border-bottom: 1px solid gray;
-  font-size: 18px;
-  text-align: center;
-  padding: 5px;
+  justify-content: center;
 }
 #username-container input { 
-  width: 50%;
+  width: 100%;
   height: 2.5em;
   background-color: #fff;
-  color: #c8c8c8;
+  color: black;
 }
-#popup-chat { 
-  width: 30%;
-  height: 2em;
-  padding: 1;
-  margin-right: 100; 
+.header { 
+  color: black;
+  justify-content: center; 
+  padding: 1em;
+  text-align: center;
+  font-size: 15px;
+}
+#avatar-options-container { 
+  text-align: center;
+}
+#avatar-options { 
+  margin-left: 3em;
+  margin-right: 3em;
+  justify-self: center;
+  padding: 1em;
+}
+#current-avatar { 
+  width: 7em; 
+  height: 7em; 
+  padding: 1em;
+  align-content: center;
 }
 #popup-chat { 
   width: 34px;
   height: 34px;
   align-self: center;
   margin-right: 1em;
+  padding: 1em;
   position: relative;
 }
+#user-edit-save { 
+  width: 90%;
+} 
+p { 
+  text-align: center;
+} 

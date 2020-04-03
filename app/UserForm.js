@@ -41,9 +41,7 @@ export default class UserForm extends Component {
           </div>
         </form>
         <div id="avatar-options-container">
-          <p>
-            <img src={this.state.avatar}></img>
-          </p>
+            <img id="current-avatar" src={this.state.avatar}></img>
           <div id="avatar-options">
             {images.map(({ id, src, title }) => (
               <a id="avatar-button">
@@ -60,9 +58,10 @@ export default class UserForm extends Component {
         </div>
         <button
               type="submit"
-              id="user-edit-submit"
+              id="user-edit-save"
               onClick={this.changeUser}
-            >Submit</button>
+            >Save</button>
+            <p>Click outside this box to close!</p>
       </div>
     );
   }
