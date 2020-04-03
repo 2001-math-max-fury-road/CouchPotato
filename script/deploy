@@ -12,7 +12,6 @@
 
 # We want this entire script to exit if any single line fails.
 # So we set the `-e` flag.
-set -e
 
 # If our deploy fails partway through we want to clean up after ourselves.
 # This next block is like a try/catch for our entire script.
