@@ -61,7 +61,7 @@ export default class UserForm extends Component {
               id="user-edit-save"
               onClick={this.changeUser}
             >Save</button>
-            <p>Click outside this box to close!</p>
+            <p>Once you've saved, press ESC to close</p>
       </div>
     );
   }

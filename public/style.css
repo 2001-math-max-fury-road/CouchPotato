@@ -310,6 +310,7 @@ form button {
   width: 90%;
 } 
 p { 
+  margin-bottom: 1em;
   text-align: center;
 } 
 #copy-to-clipboard {

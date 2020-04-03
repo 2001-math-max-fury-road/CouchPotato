@@ -13,8 +13,7 @@ export default class Chat extends React.Component {
     this.state = {
       message: '',
       messages: [],
-      users: [], 
-      showModal: false
+      users: []
     };
     this.copiedToClipboard = this.copiedToClipboard.bind(this);
     this.showEmojis = this.showEmojis.bind(this);
