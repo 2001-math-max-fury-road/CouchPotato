@@ -24,8 +24,10 @@ export default class StartPopup extends React.Component {
     localStorage.setItem('couchId', this.state.couchId);
     localStorage.setItem('username', this.state.username);
     localStorage.setItem('avatar', this.state.avatar);
-    location.replace(`http://localhost:3000/${this.state.couchId}`);
-    // location.replace(`http://couch-potato-extension.herokuapp.com/${this.state.couchId}`);
+    // location.replace(`http://localhost:3000/${this.state.couchId}`);
+    location.replace(
+      `http://couch-potato-extension.herokuapp.com/${this.state.couchId}`
+    );
   }
 
   async chooseAvatar(event) {
