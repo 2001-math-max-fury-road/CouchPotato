@@ -9,7 +9,7 @@ export default class StartPopup extends React.Component {
       couchId: '',
       username: '',
       avatar:
-        'https://pbs.twimg.com/profile_images/441409774555394048/pYFftHBs_400x400.jpeg',
+        'https://cdn.clipart.email/ded3c97537d29ccd7b35f61defe0b8ae_potato-clipart-kawaii-pencil-and-in-color-potato-clipart-kawaii_1024-1264.png',
       usernameWarning: 'Name cannot be empty'
     };
     this.startCouch = this.startCouch.bind(this);
@@ -24,8 +24,8 @@ export default class StartPopup extends React.Component {
     localStorage.setItem('couchId', this.state.couchId);
     localStorage.setItem('username', this.state.username);
     localStorage.setItem('avatar', this.state.avatar);
-    // location.replace(`http://localhost:3000/${this.state.couchId}`);
-    location.replace(`http://couch-potato-extension.herokuapp.com/${this.state.couchId}`);
+    location.replace(`http://localhost:3000/${this.state.couchId}`);
+    // location.replace(`http://couch-potato-extension.herokuapp.com/${this.state.couchId}`);
   }
 
   async chooseAvatar(event) {
