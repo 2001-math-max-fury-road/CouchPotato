@@ -37,8 +37,9 @@ app.get('/api/play-pause/:huluID/:couchID/:username', (req, res) => {
   const couchID = req.params.couchID;
   const username = req.params.username;
   const message = `${username} played/paused their video!`;
-  io.in(couchID).emit('player', huluID, message);
-  res.sendStatus(200);
+  console.log('api route', huluID, couchID, username, message)
+  io.in(couchID).emit('player', huluID, message, couchID);
+  res.json(couches);
 });
 
 // route for joining an existing couch
