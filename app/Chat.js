@@ -2,11 +2,8 @@ import React from "react";
 import Socket from "./Socket";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import Notifications, { notify } from "react-notify-toast";
-<<<<<<< HEAD
-=======
 import "../public/emoji-mart.css";
 import { Picker } from "emoji-mart";
->>>>>>> 2d577d35e6e6bc78695e4ad820aa3aacabd8ab54
 
 export default class Chat extends React.Component {
   constructor(props) {
@@ -14,8 +11,7 @@ export default class Chat extends React.Component {
     this.state = {
       message: "",
       messages: [],
-      users: [],
-      emoji: ""
+      users: []
     };
     this.copiedToClipboard = this.copiedToClipboard.bind(this);
     this.showEmojis = this.showEmojis.bind(this);
@@ -43,17 +39,6 @@ export default class Chat extends React.Component {
       window.scrollTo(0, document.body.scrollHeight);
     });
 
-    Socket.on("player", message => {
-      // add username to postMessage? so that Hulu window knows not to press the initiating person's play/pause button
-      parent.postMessage("play-pause")
-      Socket.emit(
-        "send-chat-message",
-        message,
-        localStorage.username,
-        localStorage.couchId
-      );
-    });
-
     this.sendMessage = event => {
       event.preventDefault();
       Socket.emit(
@@ -70,8 +55,8 @@ export default class Chat extends React.Component {
     this.sendShot = event => {
       event.preventDefault();
       Socket.emit(
-        'send-shot',
-        'Everyone drink!',
+        "send-shot",
+        "Everyone drink!",
         localStorage.username,
         localStorage.avatar,
         localStorage.couchId
@@ -134,19 +119,18 @@ export default class Chat extends React.Component {
         <Notifications />
         <div id="chat-container">
           <div id="chat-header">
-            <CopyToClipboard onCopy={this.copiedToClipboard}>
-              <h3>
-                Click to Copy and Share this Couch ID:
+            <h3>
+              Click to Copy and Share this Couch ID:
+              <CopyToClipboard text={localStorage.couchId}>
                 <button
-                  text={localStorage.couchId}
                   onClick={this.copiedToClipboard}
                   id="copy-to-clipboard"
                   variant="outline-primary"
                 >
                   {localStorage.couchId}
                 </button>
-              </h3>
-            </CopyToClipboard>
+              </CopyToClipboard>
+            </h3>
             <p>
               <strong>Who's on the Couch:</strong> {users}
             </p>
@@ -157,9 +141,9 @@ export default class Chat extends React.Component {
                 if (message.username) {
                   return (
                     <li>
-                      <img src={message.avatar} />{' '}
+                      <img src={message.avatar} />{" "}
                       <div id="message-content">
-                        {message.username}: {message.message}{' '}
+                        {message.username}: {message.message}{" "}
                       </div>
                     </li>
                   );
@@ -185,25 +169,26 @@ export default class Chat extends React.Component {
                 ></img>
               )}
             </div>
-          <form id="chat-form" action="">
-            <input
-              type="text"
-              placeholder="Message"
-              value={this.state.message}
-              onChange={ev => this.setState({ message: ev.target.value })}
-              className="form-control"
+            <form id="chat-form" action="">
+              <input
+                type="text"
+                placeholder="Message"
+                value={this.state.message}
+                onChange={ev => this.setState({ message: ev.target.value })}
+                className="form-control"
               />
-            <button onClick={this.sendMessage}>Send</button>
-            <img
-              src={
-                "https://images.vexels.com/media/users/3/143358/isolated/preview/0fb2d717f3362970778533776849ec50-tequila-shot-icon-by-vexels.png"
-              }
-              onClick={this.sendShot}
+              <button onClick={this.sendMessage}>Send</button>
+              <img
+                id="drink-icon"
+                src={
+                  "https://images.vexels.com/media/users/3/143358/isolated/preview/0fb2d717f3362970778533776849ec50-tequila-shot-icon-by-vexels.png"
+                }
+                onClick={this.sendShot}
               ></img>
-          </form>
+            </form>
           </div>
-          </div>
-    </div>
+        </div>
+      </div>
     );
   }
 }
