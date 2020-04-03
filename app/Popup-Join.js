@@ -18,7 +18,6 @@ export default class JoinPopup extends React.Component {
     this.checkCouchNum = this.checkCouchNum.bind(this);
   }
 
-  // Add postMessage sending couchID to Hulu parent? If Hulu parent exists
   joinCouch(event) {
     event.preventDefault();
     localStorage.setItem("couchId", this.state.couchId);

@@ -2,11 +2,8 @@ import React from "react";
 import Socket from "./Socket";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import Notifications, { notify } from "react-notify-toast";
-<<<<<<< HEAD
-=======
 import "../public/emoji-mart.css";
 import { Picker } from "emoji-mart";
->>>>>>> 2d577d35e6e6bc78695e4ad820aa3aacabd8ab54
 
 export default class Chat extends React.Component {
   constructor(props) {
@@ -43,9 +40,8 @@ export default class Chat extends React.Component {
       window.scrollTo(0, document.body.scrollHeight);
     });
 
-    Socket.on("player", message => {
-      // add username to postMessage? so that Hulu window knows not to press the initiating person's play/pause button
-      parent.postMessage("play-pause")
+    Socket.on("player", (huluID, message) => {
+      parent.postMessage(`play-pause ${huluID}`)
       Socket.emit(
         "send-chat-message",
         message,
@@ -83,6 +79,7 @@ export default class Chat extends React.Component {
   componentDidMount() {
     const username = localStorage.getItem("username");
     const couchId = localStorage.getItem("couchId");
+    parent.postMessage(`couchID ${couchId} ${username}`)
     Socket.emit("new-user", couchId, username);
   }
 

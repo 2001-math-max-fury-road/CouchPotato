@@ -32,10 +32,12 @@ app.post('/api/', (req, res) => {
 });
 
 // add event listener to play/pause, send request to that route,
-app.get("/api/play-pause", (req, res) => {
-  // Get couchID from Hulu so we can emit to proper room
-  const message = "Someone played/paused their video!";
-  io.emit("player", message);
+app.get("/api/play-pause/:huluID/:couchID/:username", (req, res) => {
+  const huluID = req.params.huluID;
+  const couchID = req.params.couchID;
+  const username = req.params.username
+  const message = `${username} played/paused their video!`;
+  io.in(couchID).emit("player", huluID, message);
   res.sendStatus(200);
 });
 

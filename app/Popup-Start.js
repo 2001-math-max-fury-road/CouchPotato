@@ -17,7 +17,6 @@ export default class StartPopup extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  // Add postMessage sending couchID to Hulu parent? If Hulu parent exists
   async startCouch(event) {
     event.preventDefault();
     const { data } = await axios.post("/api/");
