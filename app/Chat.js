@@ -58,6 +58,11 @@ export default class Chat extends React.Component {
         localStorage.avatar,
         localStorage.couchId
       );
+      const allMessages = document.getElementsByClassName('message');
+      const messageArray = Array.from(allMessages);
+      messageArray.map(msg => {
+        msg.removeAttribute('tab blink');
+      });
       this.setState({ message: '' });
       window.scrollTo(0, document.body.scrollHeight);
     };
@@ -151,7 +156,7 @@ export default class Chat extends React.Component {
               {this.state.messages.map(message => {
                 if (message.username && message.message) {
                   return (
-                    <li>
+                    <li className="message">
                       <img src={message.avatar} />{' '}
                       <div id="message-content">
                         {message.username}: {message.message}{' '}
@@ -160,19 +165,19 @@ export default class Chat extends React.Component {
                   );
                 } else if (message.username && !message.message) {
                   return (
-                    <li>
+                    <li className="message" class="tab blink">
                       <img src={message.avatar} />{' '}
-                      <div id="drinking-game" class="tab blink">
+                      <div id="drinking-game">
                         <div id="take-a-drink">
-                          {message.username} says take a drink!{' '}
+                          {message.username} says take a drink! {' '}
+                          <img src="https://images.vexels.com/media/users/3/143358/isolated/preview/0fb2d717f3362970778533776849ec50-tequila-shot-icon-by-vexels.png" />{' '}
+                           Cheers!
                         </div>
-                        <img src="https://images.vexels.com/media/users/3/143358/isolated/preview/0fb2d717f3362970778533776849ec50-tequila-shot-icon-by-vexels.png" />
-                        <div>Cheers!</div>
                       </div>
                     </li>
                   );
                 } else {
-                  return <li>{message}</li>;
+                  return <li className="message'">{message}</li>;
                 }
               })}
             </ul>
