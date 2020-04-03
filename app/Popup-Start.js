@@ -19,7 +19,7 @@ export default class StartPopup extends React.Component {
 
   async startCouch(event) {
     event.preventDefault();
-    const { data } = await axios.post("/api/");
+    const { data } = await axios.post('/api/');
     this.setState({ couchId: data.couchId });
     localStorage.setItem('couchId', this.state.couchId);
     localStorage.setItem('username', this.state.username);
@@ -33,6 +33,15 @@ export default class StartPopup extends React.Component {
     this.setState({
       avatar: event.target.src
     });
+    const allAvatars = document.getElementsByClassName('avatar');
+    const avatarArray = Array.from(allAvatars);
+    avatarArray.map(img => {
+      img.style['border'] = 'black';
+    });
+    const selectedAvatar = document.getElementById(event.target.id);
+    selectedAvatar.style['border'] = '1.5pt solid #119da4';
+    selectedAvatar.style['border-radius'] = '10px';
+    this.clickedAvatar = selectedAvatar;
   }
 
   handleChange(event) {
@@ -56,15 +65,14 @@ export default class StartPopup extends React.Component {
               </p>
               <div id="avatar-options">
                 {images.map(({ id, src, title }) => (
-                  <a id="avatar-button">
-                    <img
-                      key={id}
-                      id="avatar"
-                      src={src}
-                      alt={title}
-                      onClick={this.chooseAvatar}
-                    />
-                  </a>
+                  <img
+                    className="avatar"
+                    key={id}
+                    id={id}
+                    src={src}
+                    alt={title}
+                    onClick={this.chooseAvatar}
+                  />
                 ))}
               </div>
             </div>
