@@ -144,6 +144,7 @@ img:hover {
 }
 #emoji {
   padding: 1em;
+  padding-bottom: 2em;
 }
 #emoji-img {
   width: 34px;
@@ -168,12 +169,13 @@ img:hover {
   padding: 1px;
   position: fixed;
   bottom: 0;
-  width: 95%;
+  width: 85%;
   margin-left: 5em;
   display: flex;
 }
 #chat-form input {
   border: 1pt solid #3c3c3c;
+  font-size: 15px;
   padding: 10px;
   width: 90%;
   background-color: #1e1e1e;
@@ -185,10 +187,11 @@ img:hover {
   width: 400;
 }
 form button {
-  width: 15%;
+  width: 18%;
   background: #3dbb3d;
   border: none;
   padding: 10px;
+  align-self: center;
 }
 #button-container button {
   height: 4em;
@@ -214,6 +217,7 @@ button {
   padding: 5px 10px;
   overflow: auto;
   display: flex;
+  font-size: 15px;
 }
 #messages li:nth-child(odd) {
   background: #3c3c3c;
@@ -254,6 +258,27 @@ button {
   border: black;
   margin: 2em;
   padding: 10px;
+}
+.warning {
+  padding: 0 0.5em;
+  font-size: 1em;
+  letter-spacing: 0.1em;
+  background-color: #119da4;
+  color: white;
+  margin-left: 1em;
+}
+img {
+  width: 34px;
+  height: 34px;
+  align-self: center;
+  margin-right: 1em;
+}
+#drink-icon {
+  width: 34px;
+  height: 34px;
+  align-self: center;
+  margin-right: 1em;
+  position: relative;
 }
 
 
