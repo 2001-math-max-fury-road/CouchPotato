@@ -1,9 +1,9 @@
-import React from 'react';
-import Socket from './Socket';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
-import Notifications, { notify } from 'react-notify-toast';
-import '../public/emoji-mart.css';
-import { Picker } from 'emoji-mart';
+import React from "react";
+import Socket from "./Socket";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import Notifications, { notify } from "react-notify-toast";
+import "../public/emoji-mart.css";
+import { Picker } from "emoji-mart";
 
 export default class Chat extends React.Component {
   constructor(props) {
@@ -11,7 +11,7 @@ export default class Chat extends React.Component {
     this.state = {
       message: "",
       messages: [],
-      users: []
+      users: [],
     };
     this.copiedToClipboard = this.copiedToClipboard.bind(this);
     this.showEmojis = this.showEmojis.bind(this);
@@ -30,19 +30,17 @@ export default class Chat extends React.Component {
       const updatedUsers = Object.values(couch);
       this.setState({
         messages: [...this.state.messages, message],
-        users: updatedUsers
+        users: updatedUsers,
       });
     });
 
-    Socket.on("receive-message", msgObj => {
+    Socket.on("receive-message", (msgObj) => {
       this.setState({ messages: [...this.state.messages, msgObj] });
       window.scrollTo(0, document.body.scrollHeight);
     });
 
-<<<<<<< HEAD
-=======
     Socket.on("player", (huluID, message) => {
-      parent.postMessage(`play-pause ${huluID}`)
+      parent.postMessage(`play-pause ${huluID}`);
       Socket.emit(
         "send-chat-message",
         message,
@@ -51,8 +49,7 @@ export default class Chat extends React.Component {
       );
     });
 
->>>>>>> 0eb0e1d7416304123653f1a47728f666116da67d
-    this.sendMessage = event => {
+    this.sendMessage = (event) => {
       event.preventDefault();
       Socket.emit(
         "send-chat-message",
@@ -65,7 +62,7 @@ export default class Chat extends React.Component {
       window.scrollTo(0, document.body.scrollHeight);
     };
 
-    this.sendShot = event => {
+    this.sendShot = (event) => {
       event.preventDefault();
       Socket.emit(
         "send-shot",
@@ -81,7 +78,7 @@ export default class Chat extends React.Component {
   componentDidMount() {
     const username = localStorage.getItem("username");
     const couchId = localStorage.getItem("couchId");
-    parent.postMessage(`couchID ${couchId} ${username}`)
+    parent.postMessage(`couchID ${couchId} ${username}`);
     Socket.emit("new-user", couchId, username);
   }
 
@@ -102,7 +99,7 @@ export default class Chat extends React.Component {
   showEmojis(e) {
     this.setState(
       {
-        showEmojis: true
+        showEmojis: true,
       },
       () => document.addEventListener("click", this.closeMenu)
     );
@@ -112,7 +109,7 @@ export default class Chat extends React.Component {
     if (this.emojiPicker !== null && !this.emojiPicker.contains(e.target)) {
       this.setState(
         {
-          showEmojis: false
+          showEmojis: false,
         },
         () => document.removeEventListener("click", this.closeMenu)
       );
@@ -122,7 +119,7 @@ export default class Chat extends React.Component {
   addEmoji(e) {
     let emoji = e.native;
     this.setState({
-      message: this.state.message + emoji
+      message: this.state.message + emoji,
     });
   }
 
@@ -151,7 +148,7 @@ export default class Chat extends React.Component {
           </div>
           <div>
             <ul id="messages">
-              {this.state.messages.map(message => {
+              {this.state.messages.map((message) => {
                 if (message.username) {
                   return (
                     <li>
@@ -170,7 +167,7 @@ export default class Chat extends React.Component {
           <div id="flex-container">
             <div id="emoji">
               {this.state.showEmojis ? (
-                <span id="emoji-span" ref={el => (this.emojiPicker = el)}>
+                <span id="emoji-span" ref={(el) => (this.emojiPicker = el)}>
                   <Picker onSelect={this.addEmoji} emojiTooltip={true} />
                 </span>
               ) : (
@@ -188,7 +185,7 @@ export default class Chat extends React.Component {
                 type="text"
                 placeholder="Message"
                 value={this.state.message}
-                onChange={ev => this.setState({ message: ev.target.value })}
+                onChange={(ev) => this.setState({ message: ev.target.value })}
                 className="form-control"
               />
               <button onClick={this.sendMessage}>Send</button>
