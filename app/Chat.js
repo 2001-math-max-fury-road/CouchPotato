@@ -4,6 +4,8 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Notifications, { notify } from 'react-notify-toast';
 import '../public/emoji-mart.css';
 import { Picker } from 'emoji-mart';
+import UserForm from './UserForm';
+import Popup from "reactjs-popup";
 
 export default class Chat extends React.Component {
   constructor(props) {
@@ -11,7 +13,8 @@ export default class Chat extends React.Component {
     this.state = {
       message: '',
       messages: [],
-      users: []
+      users: [], 
+      showModal: false
     };
     this.copiedToClipboard = this.copiedToClipboard.bind(this);
     this.showEmojis = this.showEmojis.bind(this);
@@ -146,6 +149,11 @@ export default class Chat extends React.Component {
               <strong>Who's on the Couch:</strong> {users}
             </p>
           </div>
+          <div id="popup-chat">
+              <Popup modal trigger={<img src={localStorage.avatar} showModal={this.state.showModal}></img>}>
+                {close => <UserForm username={localStorage.username} avatar={localStorage.avatar} />}
+              </Popup>
+            </div>
           <div>
             <ul id="messages">
               {this.state.messages.map(message => {

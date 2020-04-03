@@ -13,6 +13,7 @@
     "react-dom": "^16.13.1",
     "react-notify-toast": "^0.5.1",
     "react-router-dom": "^5.1.2",
+    "reactjs-popup": "^1.5.0",
     "socket.io": "^2.3.0",
     "volleyball": "^1.5.1"
   },
