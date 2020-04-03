@@ -152,6 +152,8 @@ img.avatar:hover {
   top: 0;
   width: 100%;
   background-color: #000;
+  display: flex;
+  flex-direction: column;
 }
 #chat-container h3 {
   padding-bottom: 0.5em;
@@ -169,7 +171,7 @@ img.avatar:hover {
   border: 1pt solid #3c3c3c;
   font-size: 15px;
   padding: 10px;
-  width: 90%;
+  width: 100%;
   background-color: #1e1e1e;
   color: #c8c8c8;
   margin: 1.5em;
@@ -212,9 +214,23 @@ form button {
   padding-top: 15px;
   padding-bottom: 15px;
 }
+#drinking-game {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  display: flex;
+}
+#take-a-drink img {
+  height: 20px;
+  width: 20px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+/* #take-a-drink {
+  padding-right: 10px;
+} */
 .popup {
   width: 100%;
-  height: 50%;
+  height: 30%;
   top: 0;
   left: 0;
   right: 0;
@@ -250,7 +266,53 @@ form button {
   margin-right: 1em;
   position: relative;
 }
-
+#edit-user-form { 
+  background-color: white;
+  justify-content: center;
+}
+#username-container input { 
+  width: 100%;
+  height: 2.5em;
+  background-color: #fff;
+  color: black;
+}
+.header { 
+  color: black;
+  justify-content: center; 
+  padding: 1em;
+  text-align: center;
+  font-size: 15px;
+}
+#avatar-options-container { 
+  text-align: center;
+}
+#avatar-options { 
+  margin-left: 3em;
+  margin-right: 3em;
+  justify-self: center;
+  padding: 1em;
+}
+#current-avatar { 
+  width: 7em; 
+  height: 7em; 
+  padding: 1em;
+  align-content: center;
+}
+#popup-chat { 
+  width: 34px;
+  height: 34px;
+  align-self: center;
+  margin-right: 1em;
+  padding: 1em;
+  position: relative;
+}
+#user-edit-save { 
+  width: 90%;
+} 
+p { 
+  margin-bottom: 1em;
+  text-align: center;
+} 
 #copy-to-clipboard {
   width: 10em;
   height: 10%;
@@ -259,3 +321,83 @@ form button {
   margin: 0.5em;
   padding: 2px;
 }
+
+/* @group Blink */
+.blink {
+  -webkit-animation: blink 0.75s linear 4;
+  -moz-animation: blink 0.75s linear 4;
+  -ms-animation: blink 0.75s linear 4;
+  -o-animation: blink 0.75s linear 4;
+  animation: blink 0.75s linear 4;
+}
+@-webkit-keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  50.01% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-moz-keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  50.01% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-ms-keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  50.01% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-o-keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  50.01% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  50.01% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+/* @end */
