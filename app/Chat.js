@@ -11,8 +11,7 @@ export default class Chat extends React.Component {
     this.state = {
       message: '',
       messages: [],
-      users: [],
-      emoji: ''
+      users: []
     };
     this.copiedToClipboard = this.copiedToClipboard.bind(this);
     this.showEmojis = this.showEmojis.bind(this);
@@ -178,12 +177,12 @@ export default class Chat extends React.Component {
                 onChange={ev => this.setState({ message: ev.target.value })}
                 className="form-control"
               />
-              <button onClick={this.sendMessage}>Send</button>
-              <img
-                src={
-                  'https://images.vexels.com/media/users/3/143358/isolated/preview/0fb2d717f3362970778533776849ec50-tequila-shot-icon-by-vexels.png'
-                }
-                onClick={this.sendShot}
+            <button onClick={this.sendMessage}>Send</button>
+            <img id="drink-icon"
+              src={
+                "https://images.vexels.com/media/users/3/143358/isolated/preview/0fb2d717f3362970778533776849ec50-tequila-shot-icon-by-vexels.png"
+              }
+              onClick={this.sendShot}
               ></img>
             </form>
           </div>
