@@ -39,6 +39,16 @@ export default class Chat extends React.Component {
       window.scrollTo(0, document.body.scrollHeight);
     });
 
+    Socket.on("player", (huluID, message) => {
+      parent.postMessage(`play-pause ${huluID}`)
+      Socket.emit(
+        "send-chat-message",
+        message,
+        localStorage.username,
+        localStorage.couchId
+      );
+    });
+
     this.sendMessage = event => {
       event.preventDefault();
       Socket.emit(
@@ -66,9 +76,10 @@ export default class Chat extends React.Component {
   }
 
   componentDidMount() {
-    const username = localStorage.getItem('username');
-    const couchId = localStorage.getItem('couchId');
-    Socket.emit('new-user', couchId, username);
+    const username = localStorage.getItem("username");
+    const couchId = localStorage.getItem("couchId");
+    parent.postMessage(`couchID ${couchId} ${username}`)
+    Socket.emit("new-user", couchId, username);
   }
 
   componentWillUnmount() {

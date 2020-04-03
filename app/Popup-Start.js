@@ -19,7 +19,7 @@ export default class StartPopup extends React.Component {
 
   async startCouch(event) {
     event.preventDefault();
-    const { data } = await axios.post('/api/');
+    const { data } = await axios.post("/api/");
     this.setState({ couchId: data.couchId });
     localStorage.setItem('couchId', this.state.couchId);
     localStorage.setItem('username', this.state.username);
