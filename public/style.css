@@ -272,14 +272,13 @@ form button {
   padding: 2px;
 }
 
-
 /* @group Blink */
 .blink {
-	-webkit-animation: blink .75s linear infinite;
-	-moz-animation: blink .75s linear infinite;
-	-ms-animation: blink .75s linear infinite;
-	-o-animation: blink .75s linear infinite;
-	 animation: blink .75s linear infinite;
+	-webkit-animation: blink .75s linear;
+	-moz-animation: blink .75s linear;
+	-ms-animation: blink .75s linear;
+	-o-animation: blink .75s linear;
+   animation: blink .75s linear;
 }
 @-webkit-keyframes blink {
 	0% { opacity: 1; }
