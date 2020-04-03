@@ -7,7 +7,8 @@ export default class JoinPopup extends React.Component {
     this.state = {
       couchId: '',
       username: '',
-      avatar: 'https://cdn.clipart.email/ded3c97537d29ccd7b35f61defe0b8ae_potato-clipart-kawaii-pencil-and-in-color-potato-clipart-kawaii_1024-1264.png',
+      avatar:
+        'https://cdn.clipart.email/ded3c97537d29ccd7b35f61defe0b8ae_potato-clipart-kawaii-pencil-and-in-color-potato-clipart-kawaii_1024-1264.png',
       couchWarning: 'Please enter a valid Couch ID',
       usernameWarning: 'Name cannot be empty'
     };
@@ -20,10 +21,12 @@ export default class JoinPopup extends React.Component {
 
   joinCouch(event) {
     event.preventDefault();
-    localStorage.setItem("couchId", this.state.couchId);
-    localStorage.setItem("username", this.state.username);
+    localStorage.setItem('couchId', this.state.couchId);
+    localStorage.setItem('username', this.state.username);
     // location.replace(`http://localhost:3000/${this.state.couchId}`);
-    location.replace(`http://couch-potato-extension.herokuapp.com/${this.state.couchId}`);
+    location.replace(
+      `http://couch-potato-extension.herokuapp.com/${this.state.couchId}`
+    );
   }
 
   chooseAvatar(event) {
@@ -31,6 +34,9 @@ export default class JoinPopup extends React.Component {
       avatar: event.target.src
     });
     localStorage.setItem('avatar', this.state.avatar);
+    const selectedAvatar = document.getElementById(event.target.id);
+    selectedAvatar.style['border'] = '1.5pt solid #119da4';
+    selectedAvatar.style['border-radius'] = '10px';
   }
 
   handleChange(event) {
@@ -71,6 +77,7 @@ export default class JoinPopup extends React.Component {
                   <img
                     //add classname? to allow pseudo class for :focus
                     key={id}
+                    id={id}
                     src={src}
                     alt={title}
                     onClick={this.chooseAvatar}
