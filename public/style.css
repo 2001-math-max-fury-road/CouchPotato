@@ -276,11 +276,11 @@ form button {
 
 /* @group Blink */
 .blink {
-  -webkit-animation: blink 1.2s linear 4;
-  -moz-animation: blink 1.2s linear 4;
-  -ms-animation: blink 1.2s linear 4;
-  -o-animation: blink 1.2s linear 4;
-  animation: blink 1.2s linear 4;
+  -webkit-animation: blink 0.75s linear 4;
+  -moz-animation: blink 0.75s linear 4;
+  -ms-animation: blink 0.75s linear 4;
+  -o-animation: blink 0.75s linear 4;
+  animation: blink 0.75s linear 4;
 }
 @-webkit-keyframes blink {
   0% {
