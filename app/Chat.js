@@ -39,10 +39,10 @@ export default class Chat extends React.Component {
       window.scrollTo(0, document.body.scrollHeight);
     });
 
-    Socket.on("player", (huluID, message) => {
-      parent.postMessage(`play-pause ${huluID}`)
+    Socket.on('player', (huluID, message) => {
+      parent.postMessage(`play-pause ${huluID}`);
       Socket.emit(
-        "send-chat-message",
+        'send-chat-message',
         message,
         localStorage.username,
         localStorage.couchId
@@ -66,7 +66,7 @@ export default class Chat extends React.Component {
       event.preventDefault();
       Socket.emit(
         'send-shot',
-        'Everyone drink!',
+        // 'Everyone drink!',
         localStorage.username,
         localStorage.avatar,
         localStorage.couchId
@@ -76,10 +76,10 @@ export default class Chat extends React.Component {
   }
 
   componentDidMount() {
-    const username = localStorage.getItem("username");
-    const couchId = localStorage.getItem("couchId");
-    parent.postMessage(`couchID ${couchId} ${username}`)
-    Socket.emit("new-user", couchId, username);
+    const username = localStorage.getItem('username');
+    const couchId = localStorage.getItem('couchId');
+    parent.postMessage(`couchID ${couchId} ${username}`);
+    Socket.emit('new-user', couchId, username);
   }
 
   componentWillUnmount() {
@@ -149,12 +149,25 @@ export default class Chat extends React.Component {
           <div>
             <ul id="messages">
               {this.state.messages.map(message => {
-                if (message.username) {
+                if (message.username && message.message) {
                   return (
                     <li>
                       <img src={message.avatar} />{' '}
                       <div id="message-content">
                         {message.username}: {message.message}{' '}
+                      </div>
+                    </li>
+                  );
+                } else if (message.username && !message.message) {
+                  return (
+                    <li>
+                      <img src={message.avatar} />{' '}
+                      <div id="drinking-game" class="tab blink">
+                        <div id="take-a-drink">
+                          {message.username} says take a drink!{' '}
+                        </div>
+                        <img src="https://images.vexels.com/media/users/3/143358/isolated/preview/0fb2d717f3362970778533776849ec50-tequila-shot-icon-by-vexels.png" />
+                        <div>Cheers!</div>
                       </div>
                     </li>
                   );
@@ -188,12 +201,13 @@ export default class Chat extends React.Component {
                 onChange={ev => this.setState({ message: ev.target.value })}
                 className="form-control"
               />
-            <button onClick={this.sendMessage}>Send</button>
-            <img id="drink-icon"
-              src={
-                "https://images.vexels.com/media/users/3/143358/isolated/preview/0fb2d717f3362970778533776849ec50-tequila-shot-icon-by-vexels.png"
-              }
-              onClick={this.sendShot}
+              <button onClick={this.sendMessage}>Send</button>
+              <img
+                id="drink-icon"
+                src={
+                  'https://images.vexels.com/media/users/3/143358/isolated/preview/0fb2d717f3362970778533776849ec50-tequila-shot-icon-by-vexels.png'
+                }
+                onClick={this.sendShot}
               ></img>
             </form>
           </div>
