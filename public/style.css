@@ -7,6 +7,23 @@ body {
   font: 13px Helvetica, Arial;
   background-color: #000;
 }
+img {
+  width: 34px;
+  height: 34px;
+  align-self: center;
+  margin-right: 1em;
+}
+.warning {
+  padding: 0 0.5em;
+  font-size: 1em;
+  letter-spacing: 0.1em;
+  background-color: #119da4;
+  color: white;
+  margin-left: 1em;
+}
+
+
+/* Homepage ********************************************* */
 #homepage {
   padding: 2em;
   background-color: black;
@@ -36,16 +53,7 @@ body {
 #intro p {
   padding: 0.7em;
 }
-#copy-to-clipboard {
-  width: 10em;
-  height: 10%;
-  background: #3dbb3d;
-  border: black;
-  margin: 0.5em;
-  padding: 2px;
-}
-
-  #help-button-container {
+ #help-button-container {
   display: flex;
   flex-direction: column;
 }
@@ -62,6 +70,14 @@ body {
 #help-button button {
   align-self: center;
 }
+#button-container {
+  display: flex;
+  justify-content: center;
+}
+
+
+
+/* Instructions ********************************************* */
 #instructions {
   background-color: #104547;
   border: solid 1pt #119da4;
@@ -75,10 +91,12 @@ body {
   color: #c8c8c8;
   padding-bottom: 0.5em;
 }
-#button-container {
-  display: flex;
-  justify-content: center;
-}
+
+
+
+
+
+/* Join/Start ********************************************* */
 #avatar-options-container {
   color: #c8c8c8;
 }
@@ -100,24 +118,34 @@ img:hover {
 #avatar-button:active {
   border: 2pt solid #119da4;
 }
+
+
+
+
+
+
+
+
+
+/* Chat ************************************************** */
 #outer-container {
   background-color: #000;
 }
 #chat-container {
   color: #c8c8c8;
 }
-#flex-container { 
+#flex-container {
   position: fixed;
   bottom: 0;
   width: 100%;
   display: flex;
-  flex-direction: column; 
-  flex-grow: 1; 
+  flex-direction: column;
+  flex-grow: 1;
 }
-#emoji { 
+#emoji {
   padding: 1em;
 }
-#emoji-img { 
+#emoji-img {
   width: 34px;
   height: 34px;
   margin-right: 0;
@@ -227,18 +255,13 @@ button {
   margin: 2em;
   padding: 10px;
 }
-.warning {
-  padding: 0 0.5em;
-  font-size: 1em;
-  letter-spacing: 0.1em;
-  background-color: #119da4;
-  color: white;
-  margin-left: 1em;
-}
-img {
-  width: 34px;
-  height: 34px;
-  align-self: center;
-  margin-right: 1em;
-}
 
+
+#copy-to-clipboard {
+  width: 10em;
+  height: 10%;
+  background: #3dbb3d;
+  border: black;
+  margin: 0.5em;
+  padding: 2px;
+}
