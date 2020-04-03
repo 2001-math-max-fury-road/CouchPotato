@@ -29,14 +29,20 @@ export default class JoinPopup extends React.Component {
     );
   }
 
-  chooseAvatar(event) {
+  async chooseAvatar(event) {
+    event.preventDefault();
     this.setState({
       avatar: event.target.src
     });
-    localStorage.setItem('avatar', this.state.avatar);
+    const allAvatars = document.getElementsByClassName('avatar');
+    const avatarArray = Array.from(allAvatars);
+    avatarArray.map(img => {
+      img.style['border'] = 'black';
+    });
     const selectedAvatar = document.getElementById(event.target.id);
     selectedAvatar.style['border'] = '1.5pt solid #119da4';
     selectedAvatar.style['border-radius'] = '10px';
+    this.clickedAvatar = selectedAvatar;
   }
 
   handleChange(event) {
@@ -75,7 +81,7 @@ export default class JoinPopup extends React.Component {
               <div id="avatar-options">
                 {images.map(({ id, src, title }) => (
                   <img
-                    //add classname? to allow pseudo class for :focus
+                    className="avatar"
                     key={id}
                     id={id}
                     src={src}

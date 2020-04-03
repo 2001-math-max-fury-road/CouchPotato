@@ -110,7 +110,7 @@ img {
 #avatar-options-container p {
   padding: 1em;
 }
-img:hover {
+img.avatar:hover {
   border: 1.5pt solid #119da4;
   border-radius: 10px;
 }

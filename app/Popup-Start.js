@@ -35,9 +35,15 @@ export default class StartPopup extends React.Component {
     this.setState({
       avatar: event.target.src
     });
+    const allAvatars = document.getElementsByClassName('avatar');
+    const avatarArray = Array.from(allAvatars);
+    avatarArray.map(img => {
+      img.style['border'] = 'black';
+    });
     const selectedAvatar = document.getElementById(event.target.id);
     selectedAvatar.style['border'] = '1.5pt solid #119da4';
     selectedAvatar.style['border-radius'] = '10px';
+    this.clickedAvatar = selectedAvatar;
   }
 
   handleChange(event) {
@@ -62,6 +68,7 @@ export default class StartPopup extends React.Component {
               <div id="avatar-options">
                 {images.map(({ id, src, title }) => (
                   <img
+                    className="avatar"
                     key={id}
                     id={id}
                     src={src}
