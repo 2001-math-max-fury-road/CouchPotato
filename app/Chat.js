@@ -78,8 +78,6 @@ export default class Chat extends React.Component {
   componentDidMount() {
     const username = localStorage.getItem("username");
     const couchId = localStorage.getItem("couchId");
-    console.log('window.top', window.top)
-    console.log('window.parent', window.parent)
     window.top.postMessage(`couchID ${couchId} ${username}`, '*')
     Socket.emit("new-user", couchId, username);
   }
