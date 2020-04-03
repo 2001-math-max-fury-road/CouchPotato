@@ -47,6 +47,7 @@ export default class Chat extends React.Component {
         "send-chat-message",
         message,
         localStorage.username,
+        localStorage.avatar,
         localStorage.couchId
       );
     });
