@@ -127,7 +127,6 @@ export default class Chat extends React.Component {
   }
 
   render() {
-    console.log('showPopup', this.state.showPopup)
     const users = this.state.users.join(', ');
     return (
       <div id="outer-container">
@@ -153,13 +152,13 @@ export default class Chat extends React.Component {
           <div id="popup-chat">
             <Popup
               modal
-              trigger={open => <img src={localStorage.avatar}></img>}
-              closeOnDocumentClick
+              trigger={<img src='https://cdn4.iconfinder.com/data/icons/dashboard-icons/46/icon-edit-512.png' title='Edit User'></img>}
             >
-              <UserForm
+              {close => <UserForm 
+                close={close}
                 username={localStorage.username}
                 avatar={localStorage.avatar}
-              />
+              />}
             </Popup>
           </div>
           <div>
