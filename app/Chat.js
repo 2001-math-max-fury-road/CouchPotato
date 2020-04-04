@@ -35,21 +35,13 @@ export default class Chat extends React.Component {
     });
 
     Socket.on("receive-message", (msgObj) => {
-      console.log('received message')
       this.setState({ messages: [...this.state.messages, msgObj] });
       window.scrollTo(0, document.body.scrollHeight);
     });
 
-    Socket.on("player", (huluID, message, couchID) => {
-      console.log('received player', message, couchID, localStorage.couchId)
-      window.top.postMessage(`play-pause ${huluID}`, '*');
-      Socket.emit(
-        "send-chat-message",
-        message,
-        localStorage.username,
-        localStorage.avatar,
-        localStorage.couchId
-      );
+    Socket.on("player", (huluID, message) => {
+      window.top.postMessage(`play-pause ${huluID}`, "*");
+      this.setState({ messages: [...this.state.messages, message] });
     });
 
     this.sendMessage = (event) => {
@@ -81,7 +73,7 @@ export default class Chat extends React.Component {
   componentDidMount() {
     const username = localStorage.getItem("username");
     const couchId = localStorage.getItem("couchId");
-    window.top.postMessage(`couchID ${couchId} ${username}`, '*')
+    window.top.postMessage(`couchID ${couchId} ${username}`, "*");
     Socket.emit("new-user", couchId, username);
   }
 
