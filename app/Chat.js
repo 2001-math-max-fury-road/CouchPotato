@@ -15,6 +15,7 @@ export default class Chat extends React.Component {
       messages: [],
       users: []
     };
+
     this.copiedToClipboard = this.copiedToClipboard.bind(this);
     this.showEmojis = this.showEmojis.bind(this);
     this.closeMenu = this.closeMenu.bind(this);
@@ -126,6 +127,7 @@ export default class Chat extends React.Component {
   }
 
   render() {
+    console.log('showPopup', this.state.showPopup)
     const users = this.state.users.join(', ');
     return (
       <div id="outer-container">
