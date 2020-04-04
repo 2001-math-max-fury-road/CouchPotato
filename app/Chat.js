@@ -42,8 +42,8 @@ export default class Chat extends React.Component {
       window.scrollTo(0, document.body.scrollHeight);
     });
 
-    Socket.on("player", (huluID, message) => {
-      window.top.postMessage(`play-pause ${huluID}`, "*");
+    Socket.on('player', (huluID, message) => {
+      window.top.postMessage(`play-pause ${huluID}`, '*');
       this.setState({ messages: [...this.state.messages, message] });
     });
 
@@ -78,10 +78,10 @@ export default class Chat extends React.Component {
   }
 
   componentDidMount() {
-    const username = localStorage.getItem("username");
-    const couchId = localStorage.getItem("couchId");
-    window.top.postMessage(`couchID ${couchId} ${username}`, "*");
-    Socket.emit("new-user", couchId, username);
+    const username = localStorage.getItem('username');
+    const couchId = localStorage.getItem('couchId');
+    window.top.postMessage(`couchID ${couchId} ${username}`, '*');
+    Socket.emit('new-user', couchId, username);
   }
 
   componentWillUnmount() {
@@ -201,7 +201,7 @@ export default class Chat extends React.Component {
                 <img
                   id="emoji-img"
                   src={
-                    'https://cdn.shopify.com/s/files/1/1061/1924/products/Emoji_Icon_-_Cowboy_emoji_large.png?v=1571606089'
+                    'https://github.com/2001-math-max-fury-road/CouchPotato/blob/avatar-images/public/avatar-images/cowboy.png?raw=true'
                   }
                   onClick={this.showEmojis}
                 ></img>
@@ -219,7 +219,7 @@ export default class Chat extends React.Component {
               <img
                 id="drink-icon"
                 src={
-                  'https://images.vexels.com/media/users/3/143358/isolated/preview/0fb2d717f3362970778533776849ec50-tequila-shot-icon-by-vexels.png'
+                  'https://github.com/2001-math-max-fury-road/CouchPotato/blob/avatar-images/public/avatar-images/drink-icon.png?raw=true'
                 }
                 onClick={this.sendShot}
               ></img>
