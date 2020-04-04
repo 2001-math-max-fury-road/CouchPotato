@@ -5,7 +5,7 @@ import Notifications, { notify } from 'react-notify-toast';
 import '../public/emoji-mart.css';
 import { Picker } from 'emoji-mart';
 import UserForm from './UserForm';
-import Popup from "reactjs-popup";
+import Popup from 'reactjs-popup';
 
 export default class Chat extends React.Component {
   constructor(props) {
@@ -38,18 +38,14 @@ export default class Chat extends React.Component {
     });
 
     Socket.on('receive-message', msgObj => {
+      console.log('received message');
       this.setState({ messages: [...this.state.messages, msgObj] });
       window.scrollTo(0, document.body.scrollHeight);
     });
 
     Socket.on('player', (huluID, message) => {
-      parent.postMessage(`play-pause ${huluID}`);
-      Socket.emit(
-        'send-chat-message',
-        message,
-        localStorage.username,
-        localStorage.couchId
-      );
+      window.top.postMessage(`play-pause ${huluID}`, '*');
+      this.setState({ messages: [...this.state.messages, message] });
     });
 
     this.sendMessage = event => {
@@ -74,7 +70,6 @@ export default class Chat extends React.Component {
       event.preventDefault();
       Socket.emit(
         'send-shot',
-        // 'Everyone drink!',
         localStorage.username,
         localStorage.avatar,
         localStorage.couchId
@@ -86,7 +81,7 @@ export default class Chat extends React.Component {
   componentDidMount() {
     const username = localStorage.getItem('username');
     const couchId = localStorage.getItem('couchId');
-    parent.postMessage(`couchID ${couchId} ${username}`);
+    window.top.postMessage(`couchID ${couchId} ${username}`, '*');
     Socket.emit('new-user', couchId, username);
   }
 
@@ -156,32 +151,39 @@ export default class Chat extends React.Component {
             </p>
           </div>
           <div id="popup-chat">
-              <Popup modal trigger={open => <img src={localStorage.avatar} ></img>} closeOnDocumentClick>
-                 <UserForm username={localStorage.username} avatar={localStorage.avatar} /> 
-              </Popup>
-            </div>
+            <Popup
+              modal
+              trigger={open => <img src={localStorage.avatar}></img>}
+              closeOnDocumentClick
+            >
+              <UserForm
+                username={localStorage.username}
+                avatar={localStorage.avatar}
+              />
+            </Popup>
+          </div>
           <div>
             <ul id="messages">
               {this.state.messages.map(message => {
-                if (message.username && message.message) {
-                  return (
-                    <li className="message">
-                      <img src={message.avatar} />{' '}
-                      <div id="message-content">
-                        {message.username}: {message.message}{' '}
-                      </div>
-                    </li>
-                  );
-                } else if (message.username && !message.message) {
+                if (message.username && !message.message) {
                   return (
                     <li className="message" class="tab blink">
                       <img src={message.avatar} />{' '}
                       <div id="drinking-game">
                         <div id="take-a-drink">
-                          {message.username} says take a drink! {' '}
+                          {message.username} says take a drink!{' '}
                           <img src="https://images.vexels.com/media/users/3/143358/isolated/preview/0fb2d717f3362970778533776849ec50-tequila-shot-icon-by-vexels.png" />{' '}
-                           Cheers!
+                          Cheers!
                         </div>
+                      </div>
+                    </li>
+                  );
+                } else if (message.username) {
+                  return (
+                    <li>
+                      <img src={message.avatar} />{' '}
+                      <div id="message-content">
+                        {message.username}: {message.message}{' '}
                       </div>
                     </li>
                   );
@@ -201,7 +203,7 @@ export default class Chat extends React.Component {
                 <img
                   id="emoji-img"
                   src={
-                    'https://cdn.shopify.com/s/files/1/1061/1924/products/Emoji_Icon_-_Cowboy_emoji_large.png?v=1571606089'
+                    'https://github.com/2001-math-max-fury-road/CouchPotato/blob/avatar-images/public/avatar-images/cowboy.png?raw=true'
                   }
                   onClick={this.showEmojis}
                 ></img>
@@ -219,7 +221,7 @@ export default class Chat extends React.Component {
               <img
                 id="drink-icon"
                 src={
-                  'https://images.vexels.com/media/users/3/143358/isolated/preview/0fb2d717f3362970778533776849ec50-tequila-shot-icon-by-vexels.png'
+                  'https://github.com/2001-math-max-fury-road/CouchPotato/blob/avatar-images/public/avatar-images/drink-icon.png?raw=true'
                 }
                 onClick={this.sendShot}
               ></img>
