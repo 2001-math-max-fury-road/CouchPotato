@@ -21,10 +21,12 @@ export default class JoinPopup extends React.Component {
 
   joinCouch(event) {
     event.preventDefault();
-    localStorage.setItem("couchId", this.state.couchId);
-    localStorage.setItem("username", this.state.username);
+    localStorage.setItem('couchId', this.state.couchId);
+    localStorage.setItem('username', this.state.username);
     // location.replace(`http://localhost:3000/${this.state.couchId}`);
-    location.replace(`http://couch-potato-extension.herokuapp.com/${this.state.couchId}`);
+    location.replace(
+      `http://couch-potato-extension.herokuapp.com/${this.state.couchId}`
+    );
   }
 
   async chooseAvatar(event) {
