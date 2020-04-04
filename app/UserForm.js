@@ -6,8 +6,9 @@ export default class UserForm extends Component {
     super(props);
     this.state = {
       username: this.props.username,
-      avatar: this.props.avatar
+      avatar: this.props.avatar, 
     };
+
     this.changeUser = this.changeUser.bind(this);
     this.changeAvatar = this.changeAvatar.bind(this);
     this.changeUsername = this.changeUsername.bind(this);
@@ -61,7 +62,7 @@ export default class UserForm extends Component {
               id="user-edit-save"
               onClick={this.changeUser}
             >Save</button>
-            <p>Once you've saved, press ESC to close</p>
+    <p>Once you've saved, press ESC to close</p>
       </div>
     );
   }

@@ -15,6 +15,7 @@ export default class Chat extends React.Component {
       messages: [],
       users: []
     };
+
     this.copiedToClipboard = this.copiedToClipboard.bind(this);
     this.showEmojis = this.showEmojis.bind(this);
     this.closeMenu = this.closeMenu.bind(this);
@@ -131,6 +132,7 @@ export default class Chat extends React.Component {
   }
 
   render() {
+    console.log('showPopup', this.state.showPopup)
     const users = this.state.users.join(', ');
     return (
       <div id="outer-container">
@@ -154,9 +156,8 @@ export default class Chat extends React.Component {
             </p>
           </div>
           <div id="popup-chat">
-              <Popup modal trigger={open => ( 
-              <img src={localStorage.avatar} ></img> )} closeOnDocumentClick>
-                 <UserForm  username={localStorage.username} avatar={localStorage.avatar} />
+              <Popup modal trigger={open => <img src={localStorage.avatar} ></img>} closeOnDocumentClick>
+                 <UserForm username={localStorage.username} avatar={localStorage.avatar} /> 
               </Popup>
             </div>
           <div>
