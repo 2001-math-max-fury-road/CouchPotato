@@ -1,6 +1,10 @@
+![](public/couch-potato.png)
+
 # Couch Potato
 
-Couch Potato is a Chrome extension allowing multiple users to remotely and simultaneously stream video content, compatible with the Hulu web player.
+Couch Potato is a Chrome extension allowing Hulu users to watch shows together from the comfort of their own couch.
+
+Our extension uses React, Express, and Socket.io to create private chat rooms, which are then loaded into the Hulu frame via our extension. Once launched, users can control play/pause functionality across all users’ screens in order to create a shared viewing experience. We also take advantage of React libraries to enable emojis and a popup to edit user information in the chat window.
 
 ## Using the Extension
 
@@ -37,22 +41,25 @@ git checkout comments
 - [Socket.io](https://socket.io/get-started/chat) - Real-time chat features
 - [React.js](https://reactjs.org/) - Building user interface
 
+## Acknowledgments
+
+### Advisors
+
+- [David Patlut](https://github.com/dpatlut)
+- [Sarah Zhao](https://github.com/sarahzhao25)
+
+### Tutorials Referenced
+
+- **Integrating Socket.io into a Chrome Extension:** [video](https://www.youtube.com/watch?v=1zVoGTQUXvs) and [corresponding repo](https://github.com/matthewlawson/lnm-socket.io)
+- **Build Real Time Chat Rooms With Node.js And Socket.io:** [video](https://www.youtube.com/watch?v=UymGJnv-WsE) and [corresponding repo](https://github.com/WebDevSimplified/Realtime-Chat-App-With-Rooms)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
 ## Authors
 
 - [**Dani Meyer**](https://github.com/dlm19)
 - [**Eunjoon Hwang**](https://github.com/joonybejoy)
 - [**Grace Murray**](https://github.com/gkmurray124)
 - [**Caitlin Floyd**](https://github.com/cafloyd)
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-- We drew inspiration from the [Netflix Party extension](https://chrome.google.com/webstore/detail/netflix-party/oocalimimngaihdkbihfgmpkcpnmlaoa?hl=en) and looked at the [source code](https://github.com/netflixparty1/netflixparty-chrome) to help us get started
-
-### Tutorials Referenced
-
-- **Integrating Socket.io into a Chrome Extension:** [video](https://www.youtube.com/watch?v=1zVoGTQUXvs) and [corresponding repo](https://github.com/matthewlawson/lnm-socket.io)
-- **Build Real Time Chat Rooms With Node.js And Socket.io:** [video](https://www.youtube.com/watch?v=UymGJnv-WsE) and [corresponding repo](https://github.com/WebDevSimplified/Realtime-Chat-App-With-Rooms)
