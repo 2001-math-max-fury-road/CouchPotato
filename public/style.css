@@ -294,13 +294,11 @@ form button {
   text-align: center;
   font-size: 15px;
 }
-#avatar-options-container {
+#user-avatar-options-container {
   text-align: center;
   flex-wrap: wrap;
 }
-#avatar-options {
-  margin-left: 8em;
-  margin-right: 8em;
+#user-avatar-options {
   justify-self: center;
   padding: 1em;
 }
