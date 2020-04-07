@@ -32,12 +32,31 @@ app.post("/api/", (req, res) => {
 });
 
 // add event listener to play/pause, send request to that route,
-app.get("/api/play-pause/:huluID/:couchID/:username", (req, res) => {
+app.get('/api/pause/:huluID/:couchID/:username/:time', (req, res) => {
   const huluID = req.params.huluID;
   const couchID = req.params.couchID;
   const username = req.params.username;
-  const message = `${username} played/paused their video!`;
-  io.in(couchID).emit("player", huluID, message);
+  const inputTime = req.params.time;
+  // convert time back to colon
+  const time = inputTime.replace('-', ':')
+  const message = `${username} paused their video at ${time}!`;
+
+  // Emit paused message
+  io.in(couchID).emit('player', huluID, message, 'pause');
+  res.json(couches);
+});
+
+app.get('/api/play/:huluID/:couchID/:username/:time', (req, res) => {
+  const huluID = req.params.huluID;
+  const couchID = req.params.couchID;
+  const username = req.params.username;
+  const inputTime = req.params.time;
+  // convert time back to colon
+  const time = inputTime.replace('-', ':')
+  const message = `${username} played their video at ${time}!`;
+
+  // Emit playing message
+  io.in(couchID).emit('player', huluID, message, 'play');
   res.json(couches);
 });
 
