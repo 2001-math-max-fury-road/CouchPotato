@@ -136,6 +136,10 @@ img.avatar:hover {
   background-color: #000;
   padding: 0.5em;
 }
+#avatar {
+  size: 30px;
+}
+
 #emoji {
   padding: 1.5em;
   padding-left: 1em;

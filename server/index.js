@@ -37,7 +37,7 @@ app.get("/api/play-pause/:huluID/:couchID/:username", (req, res) => {
   const couchID = req.params.couchID;
   const username = req.params.username;
   const message = `${username} played/paused their video!`;
-  io.in(couchID).emit('player', huluID, message);
+  io.in(couchID).emit("player", huluID, message);
   res.json(couches);
 });
 
@@ -70,14 +70,14 @@ io.on("connection", (socket) => {
     io.in(couch).emit("receive-message", {
       message: message,
       username: username,
-      avatar: avatar
+      avatar: avatar,
     });
   });
 
-  socket.on('send-shot', (username, avatar, couch) => {
-    io.in(couch).emit('receive-message', {
+  socket.on("send-shot", (username, avatar, couch) => {
+    io.in(couch).emit("receive-message", {
       username: username,
-      avatar: avatar
+      avatar: avatar,
     });
   });
 
