@@ -37,7 +37,7 @@ export default class Chat extends React.Component {
       });
     });
 
-    Socket.on('receive-message', msgObj => {
+    Socket.on('receive-message', (msgObj) => {
       this.setState({ messages: [...this.state.messages, msgObj] });
       window.scrollTo(0, document.body.scrollHeight);
     });
@@ -209,7 +209,7 @@ export default class Chat extends React.Component {
                 <img
                   id="emoji-img"
                   src={
-                    'https://github.com/2001-math-max-fury-road/CouchPotato/blob/avatar-images/public/avatar-images/cowboy.png?raw=true'
+                    'https://github.com/2001-math-max-fury-road/CouchPotato/blob/master/public/avatar-images/cowboy.png?raw=true'
                   }
                   onClick={this.showEmojis}
                 ></img>
@@ -227,7 +227,7 @@ export default class Chat extends React.Component {
               <img
                 id="drink-icon"
                 src={
-                  'https://github.com/2001-math-max-fury-road/CouchPotato/blob/avatar-images/public/avatar-images/drink-icon.png?raw=true'
+                  'https://github.com/2001-math-max-fury-road/CouchPotato/blob/master/public/avatar-images/drink-icon.png?raw=true'
                 }
                 onClick={this.sendShot}
               ></img>
