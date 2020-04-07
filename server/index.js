@@ -9,11 +9,9 @@ const { couches, randomizeCouchId, getUserCouches } = require("./utils");
 
 app.set("view engine", "html");
 
-// Only use logging middleware when not running tests
 const debug = process.env.NODE_ENV === "test";
 app.use(volleyball.custom({ debug }));
 
-// static middleware
 app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -24,24 +22,20 @@ app.use(function (req, res, next) {
   next();
 });
 
-// route for starting a new couch
 app.post("/api/", (req, res) => {
   const couch = randomizeCouchId();
   couches[couch] = { users: {} };
   res.redirect(couch);
 });
 
-// add event listener to play/pause, send request to that route,
 app.get('/api/pause/:huluID/:couchID/:username/:time', (req, res) => {
   const huluID = req.params.huluID;
   const couchID = req.params.couchID;
   const username = req.params.username;
   const inputTime = req.params.time;
-  // convert time back to colon
   const time = inputTime.replace('-', ':')
   const message = `${username} paused their video at ${time}!`;
 
-  // Emit paused message
   io.in(couchID).emit('player', huluID, message, 'pause');
   res.json(couches);
 });
@@ -51,16 +45,13 @@ app.get('/api/play/:huluID/:couchID/:username/:time', (req, res) => {
   const couchID = req.params.couchID;
   const username = req.params.username;
   const inputTime = req.params.time;
-  // convert time back to colon
   const time = inputTime.replace('-', ':')
   const message = `${username} played their video at ${time}!`;
 
-  // Emit playing message
   io.in(couchID).emit('player', huluID, message, 'play');
   res.json(couches);
 });
 
-// route for joining an existing couch
 app.get("/api/:couch", (req, res) => {
   res.json({ couchId: req.params.couch });
 });
@@ -110,7 +101,6 @@ io.on("connection", (socket) => {
   });
 });
 
-// error handling middleware
 app.use((err, req, res, next) => {
   if (process.env.NODE_ENV !== "test") console.error(err.stack);
   res.status(err.status || 500).send(err.message || "Internal server error");
