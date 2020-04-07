@@ -133,6 +133,18 @@ export default class Chat extends React.Component {
         <Notifications />
         <div id="chat-container">
           <div id="chat-header">
+          <div id="popup-chat">
+            <Popup
+              modal
+              trigger={<img src='https://cdn4.iconfinder.com/data/icons/dashboard-icons/46/icon-edit-512.png' title='Edit User'></img>}
+            >
+              {close => <UserForm 
+                close={close}
+                username={localStorage.username}
+                avatar={localStorage.avatar}
+              />}
+            </Popup>
+          </div>
             <h3>
               Click to Copy and Share this Couch ID:
               <CopyToClipboard text={localStorage.couchId}>
@@ -149,18 +161,7 @@ export default class Chat extends React.Component {
               <strong>Who's on the Couch:</strong> {users}
             </p>
           </div>
-          <div id="popup-chat">
-            <Popup
-              modal
-              trigger={<img src='https://cdn4.iconfinder.com/data/icons/dashboard-icons/46/icon-edit-512.png' title='Edit User'></img>}
-            >
-              {close => <UserForm 
-                close={close}
-                username={localStorage.username}
-                avatar={localStorage.avatar}
-              />}
-            </Popup>
-          </div>
+          
           <div>
             <ul id="messages">
               {this.state.messages.map(message => {
