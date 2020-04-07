@@ -37,14 +37,12 @@ export default class Chat extends React.Component {
     });
 
     Socket.on('receive-message', msgObj => {
-      console.log('received message');
       this.setState({ messages: [...this.state.messages, msgObj] });
       window.scrollTo(0, document.body.scrollHeight);
     });
 
-    Socket.on('player', (huluID, message, couchID) => {
-      console.log('received player', message, couchID, localStorage.couchId);
-      window.top.postMessage(`play-pause ${huluID}`, '*');
+    Socket.on('player', (huluID, message, status) => {
+      window.top.postMessage(`play-pause ${status} ${huluID}`, '*');
       Socket.emit(
         'send-chat-message',
         message,
