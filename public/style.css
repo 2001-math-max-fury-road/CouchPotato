@@ -164,6 +164,7 @@ img.avatar:hover {
   flex-direction: column;
 }
 #chat-container h3 {
+  padding-top: 0;
   padding-bottom: 0.5em;
   flex-wrap: wrap;
 }
@@ -207,7 +208,7 @@ form button {
   color: #c8c8c8;
   list-style-type: none;
   margin: 0.5;
-  margin-top: 75px;
+  margin-top: 100px;
   margin-bottom: 125px;
   height: 50%;
 }
@@ -309,13 +310,17 @@ form button {
   align-content: center;
 }
 #popup-chat {
-  width: 20px;
-  height: 20px;
-  align-self: center;
+  width: 12px;
+  height: 12px;
+  /* align-self: center; */
   margin-right: 1em;
   padding: 1em;
-  position: relative;
+  position: sticky;
 }
+#popup-chat img{ 
+  width: 18px;
+  height: 18px;
+} 
 #user-edit-save {
   width: 90%;
 }
