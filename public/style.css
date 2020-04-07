@@ -279,6 +279,7 @@ form button {
 #edit-user-form {
   background-color: white;
   justify-content: center;
+  height: 5em;
 }
 #username-container input {
   width: 100%;
@@ -298,29 +299,28 @@ form button {
   flex-wrap: wrap;
 }
 #avatar-options {
-  margin-left: 3em;
-  margin-right: 3em;
+  margin-left: 8em;
+  margin-right: 8em;
   justify-self: center;
   padding: 1em;
 }
-#current-avatar {
-  width: 6em;
-  height: 6em;
-  padding: 1em;
-  align-content: center;
-}
-#popup-chat {
-  width: 12px;
-  height: 12px;
-  /* align-self: center; */
+ #popup-chat {
+  width: 20px;
+  height: 20px;
   margin-right: 1em;
   padding: 1em;
   position: sticky;
-}
+} 
 #popup-chat img{ 
   width: 18px;
   height: 18px;
 } 
+
+/* current avatar */ 
+#user-avatar-options-container img { 
+  width: 35px; 
+  height: 35px;
+}
 #user-edit-save {
   width: 90%;
 }

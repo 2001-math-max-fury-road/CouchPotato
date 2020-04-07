@@ -32,7 +32,7 @@ export default class UserForm extends Component {
     return (
       <div>
         <form id="edit-user-form">
-          <div className="header"> Edit User </div>
+          <div className="user-form-header"> Edit User </div>
           <div id="username-container">
             <label htmlFor="username" />
             <input
@@ -42,14 +42,14 @@ export default class UserForm extends Component {
             ></input>
           </div>
         </form>
-        <div id="avatar-options-container">
+        <div id="user-avatar-options-container">
             <img id="current-avatar" src={this.state.avatar}></img>
-          <div id="avatar-options">
+          <div id="user-avatar-options">
             {images.map(({ id, src, title }) => (
-              <a id="avatar-button">
+              <a id="user-avatar-button">
                 <img
                   key={id}
-                  id="avatar"
+                  id="user-avatar"
                   src={src}
                   alt={title}
                   onClick={this.changeAvatar}
