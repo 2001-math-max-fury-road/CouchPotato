@@ -89,14 +89,14 @@ io.on("connection", (socket) => {
     io.in(couch).emit("receive-message", {
       message: message,
       username: username,
-      avatar: avatar
+      avatar: avatar,
     });
   });
 
-  socket.on('send-shot', (username, avatar, couch) => {
-    io.in(couch).emit('receive-message', {
+  socket.on("send-shot", (username, avatar, couch) => {
+    io.in(couch).emit("receive-message", {
       username: username,
-      avatar: avatar
+      avatar: avatar,
     });
   });
 
