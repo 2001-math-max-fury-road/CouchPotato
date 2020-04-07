@@ -33,6 +33,7 @@ app.post("/api/", (req, res) => {
 
 // add event listener to play/pause, send request to that route,
 app.get('/api/pause/:huluID/:couchID/:username/:time', (req, res) => {
+  console.log('hit pause route in backend')
   const huluID = req.params.huluID;
   const couchID = req.params.couchID;
   const username = req.params.username;
@@ -47,6 +48,7 @@ app.get('/api/pause/:huluID/:couchID/:username/:time', (req, res) => {
 });
 
 app.get('/api/play/:huluID/:couchID/:username/:time', (req, res) => {
+  console.log('hit play route in backend')
   const huluID = req.params.huluID;
   const couchID = req.params.couchID;
   const username = req.params.username;
