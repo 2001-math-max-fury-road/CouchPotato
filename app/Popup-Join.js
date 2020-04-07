@@ -1,16 +1,16 @@
-import React from 'react';
-import images from '../public/images';
+import React from "react";
+import images from "../public/images";
 
 export default class JoinPopup extends React.Component {
   constructor() {
     super();
     this.state = {
-      couchId: '',
-      username: '',
+      couchId: "",
+      username: "",
       avatar:
-        'https://cdn.clipart.email/ded3c97537d29ccd7b35f61defe0b8ae_potato-clipart-kawaii-pencil-and-in-color-potato-clipart-kawaii_1024-1264.png',
-      couchWarning: 'Please enter a valid Couch ID',
-      usernameWarning: 'Name cannot be empty'
+        "https://cdn.clipart.email/ded3c97537d29ccd7b35f61defe0b8ae_potato-clipart-kawaii-pencil-and-in-color-potato-clipart-kawaii_1024-1264.png",
+      couchWarning: "Please enter a valid Couch ID",
+      usernameWarning: "Name cannot be empty",
     };
 
     this.joinCouch = this.joinCouch.bind(this);
@@ -33,16 +33,16 @@ export default class JoinPopup extends React.Component {
   async chooseAvatar(event) {
     event.preventDefault();
     this.setState({
-      avatar: event.target.src
+      avatar: event.target.src,
     });
-    const allAvatars = document.getElementsByClassName('avatar');
+    const allAvatars = document.getElementsByClassName("avatar");
     const avatarArray = Array.from(allAvatars);
-    avatarArray.map(img => {
-      img.style['border'] = 'black';
+    avatarArray.map((img) => {
+      img.style["border"] = "black";
     });
     const selectedAvatar = document.getElementById(event.target.id);
-    selectedAvatar.style['border'] = '1.5pt solid #119da4';
-    selectedAvatar.style['border-radius'] = '10px';
+    selectedAvatar.style["border"] = "1.5pt solid #119da4";
+    selectedAvatar.style["border-radius"] = "10px";
     this.clickedAvatar = selectedAvatar;
   }
 
