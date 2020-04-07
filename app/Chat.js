@@ -15,6 +15,7 @@ export default class Chat extends React.Component {
       messages: [],
       users: []
     };
+
     this.copiedToClipboard = this.copiedToClipboard.bind(this);
     this.showEmojis = this.showEmojis.bind(this);
     this.closeMenu = this.closeMenu.bind(this);
@@ -137,6 +138,18 @@ export default class Chat extends React.Component {
         <Notifications />
         <div id="chat-container">
           <div id="chat-header">
+          <div id="popup-chat">
+            <Popup
+              modal
+              trigger={<img src='https://cdn4.iconfinder.com/data/icons/dashboard-icons/46/icon-edit-512.png' title='Edit User'></img>}
+            >
+              {close => <UserForm
+                close={close}
+                username={localStorage.username}
+                avatar={localStorage.avatar}
+              />}
+            </Popup>
+          </div>
             <h3>
               Click to Copy and Share this Couch ID:
               <CopyToClipboard text={localStorage.couchId}>
@@ -153,18 +166,7 @@ export default class Chat extends React.Component {
               <strong>Who's on the Couch:</strong> {users}
             </p>
           </div>
-          <div id="popup-chat">
-            <Popup
-              modal
-              trigger={open => <img src={localStorage.avatar}></img>}
-              closeOnDocumentClick
-            >
-              <UserForm
-                username={localStorage.username}
-                avatar={localStorage.avatar}
-              />
-            </Popup>
-          </div>
+
           <div>
             <ul id="messages">
               {this.state.messages.map(message => {
@@ -206,7 +208,7 @@ export default class Chat extends React.Component {
                 <img
                   id="emoji-img"
                   src={
-                    'https://cdn.shopify.com/s/files/1/1061/1924/products/Emoji_Icon_-_Cowboy_emoji_large.png?v=1571606089'
+                    'https://github.com/2001-math-max-fury-road/CouchPotato/blob/avatar-images/public/avatar-images/cowboy.png?raw=true'
                   }
                   onClick={this.showEmojis}
                 ></img>
@@ -224,7 +226,7 @@ export default class Chat extends React.Component {
               <img
                 id="drink-icon"
                 src={
-                  'https://images.vexels.com/media/users/3/143358/isolated/preview/0fb2d717f3362970778533776849ec50-tequila-shot-icon-by-vexels.png'
+                  'https://github.com/2001-math-max-fury-road/CouchPotato/blob/avatar-images/public/avatar-images/drink-icon.png?raw=true'
                 }
                 onClick={this.sendShot}
               ></img>
