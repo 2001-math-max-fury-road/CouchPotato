@@ -6,6 +6,8 @@ Couch Potato is a Chrome extension allowing Hulu users to watch shows together f
 
 Our extension uses React, Express, and Socket.io to create private chat rooms, which are then loaded into the Hulu frame via our extension. Once launched, users can control play/pause functionality across all users’ screens in order to create a shared viewing experience. We also take advantage of React libraries to enable emojis and a popup to edit user information in the chat window.
 
+Download it in the Chrome store [here](https://chrome.google.com/webstore/detail/couch-potato/aheloceipokicgchednkbmlaejgcpllo)!
+
 ## Using the Extension
 
 Once you and your friends have installed the Couch Potato extension, begin watching a show or movie on Hulu, then click on the popcorn icon in your Chrome menu bar and then the "Start a Couch Party" button that pops up.
