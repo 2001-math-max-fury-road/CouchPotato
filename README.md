@@ -10,17 +10,32 @@ Download it in the Chrome store [here](https://chrome.google.com/webstore/detail
 
 ## Using the Extension
 
-Once you and your friends have installed the Couch Potato extension, begin watching a show or movie on Hulu, then click on the popcorn icon in your Chrome menu bar and then the "Start a Couch Party" button that pops up.
-
-![](demo-screenshots/extension-button.png)
-
-To start a Couch, click "Start a New Couch," enter your name, and click "Start." If your friend has already started a Couch, click "Join a Couch," and enter the Couch ID they gave you along with your name, and click "Join."
-
-![](demo-screenshots/welcome-screen.png)
-
-You're now on the Couch! Look at the top of the chat to see who else is here, or click on the green Couch ID to copy and share the 15-digit number with your friends. Now, get to binge-watching!
-
-![](demo-screenshots/chat-room.png)
+<table>
+  <tr> 
+    <td>
+      <p>Once you and your friends have installed the Couch Potato extension, begin watching a show or movie on Hulu, then click on the popcorn icon in your Chrome menu bar and then the "Start a Couch Party" button that pops up.</p>
+    </td>
+    <td width="40%" align="center" >
+      <img src="demo-screenshots/extension-button.png" />
+    </td>
+  </tr>
+  <tr>
+    <td>
+        <p>To start a Couch, click "Start a New Couch," enter your name, and click "Start." If your friend has already started a Couch, click "Join a Couch," and enter the Couch ID they gave you along with your name, and click "Join."</p>
+    </td>
+    <td width="40%" align="center">
+        <img src="demo-screenshots/welcome-screen.png" />
+    </td>
+  </tr>
+  <tr>
+    <td>
+        <p>You're now on the Couch! Look at the top of the chat to see who else is here, or click on the green Couch ID to copy and share the 15-digit number with your friends. Now, get to binge-watching!</p>
+    </td>
+    <td width="40%" align="center">
+        <img src="demo-screenshots/chat-room.png" />
+    </td>
+  </tr>
+</table>
 
 ## Getting Started
 
