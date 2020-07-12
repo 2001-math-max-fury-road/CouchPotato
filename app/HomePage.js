@@ -20,7 +20,6 @@ export default class HomePage extends Component {
   toggleJoinPopup() {
     this.setState({
       showStart: false,
-      // showHelpButton: false,
       showJoin: !this.state.showJoin
     });
   }
@@ -28,7 +27,6 @@ export default class HomePage extends Component {
   toggleStartPopup() {
     this.setState({
       showJoin: false,
-      // showHelpButton: false,
       showStart: !this.state.showStart
     });
   }
