@@ -76,7 +76,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Authors
 
-- [**Dani Meyer**](https://github.com/dlm19)
+- [**Dani Meyer**](https://github.com/danimeyer)
 - [**Eunjoon Hwang**](https://github.com/joonybejoy)
 - [**Grace Murray**](https://github.com/gkmurray124)
 - [**Caitlin Floyd**](https://github.com/cafloyd)
