@@ -8,6 +8,8 @@ Our extension uses React, Express, and Socket.io to create private chat rooms, w
 
 Download it in the Chrome store [here](https://chrome.google.com/webstore/detail/couch-potato/aheloceipokicgchednkbmlaejgcpllo)!
 
+![](demo-screenshots/demo-couch-potato.gif)
+
 ## Using the Extension
 
 <table>
